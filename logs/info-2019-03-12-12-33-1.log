@@ -1,0 +1,2 @@
+[2019-03-12 12:33:08:309] [INFO] - com.kone.feignuser.controller.ProductController.viewProductMaterialNumByProductId(ProductController.java:68) - 1
+[2019-03-12 12:33:11:954] [INFO] - com.kone.feignuser.controller.ProductController.viewProductMaterialNumByProductId(ProductController.java:68) - 2

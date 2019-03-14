@@ -1,0 +1,5 @@
+[2019-03-06 10:28:12:401] [INFO] - com.kone.feignuser.controller.MaterialController.viewMaterial(MaterialController.java:31) - ??1
+[2019-03-06 10:28:12:423] [INFO] - com.kone.feignuser.controller.MaterialController.viewMaterial(MaterialController.java:31) - ??1
+[2019-03-06 10:28:12:424] [INFO] - com.kone.feignuser.controller.MaterialController.viewMaterial(MaterialController.java:31) - ??2
+[2019-03-06 10:28:12:424] [INFO] - com.kone.feignuser.controller.MaterialController.viewMaterial(MaterialController.java:31) - material1
+[2019-03-06 10:28:12:424] [INFO] - com.kone.feignuser.controller.MaterialController.viewMaterial(MaterialController.java:31) - material2

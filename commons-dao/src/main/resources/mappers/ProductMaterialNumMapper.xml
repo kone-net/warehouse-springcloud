@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.kone.commonsDao.dao.ProductMaterialNumMapper">
+  <resultMap id="BaseResultMap" type="com.kone.utils.entity.ProductMaterialNum">
+    <id column="product_material_num_id" jdbcType="BIGINT" property="productMaterialNumId" />
+    <result column="product_id" jdbcType="BIGINT" property="productId" />
+    <result column="material_id" jdbcType="BIGINT" property="materialId" />
+    <result column="material_num" jdbcType="FLOAT" property="materialNum" />
+    <result column="gmt_create" jdbcType="TIMESTAMP" property="gmtCreate" />
+    <result column="gmt_update" jdbcType="TIMESTAMP" property="gmtUpdate" />
+    <result column="yn" jdbcType="INTEGER" property="yn" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    product_material_num_id, product_id, material_id, material_num, gmt_create, gmt_update,yn
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from tb_product_material_num
+    where product_material_num_id = #{productMaterialNumId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from tb_product_material_num
+    where product_material_num_id = #{productMaterialNumId,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.kone.utils.entity.ProductMaterialNum">
+    insert into tb_product_material_num (product_material_num_id, product_id, material_id, 
+      material_num, gmt_create, gmt_update,yn
+      )
+    values (#{productMaterialNumId,jdbcType=BIGINT}, #{productId,jdbcType=BIGINT}, #{materialId,jdbcType=BIGINT}, 
+      #{materialNum,jdbcType=FLOAT}, now(), now(),0
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.kone.utils.entity.ProductMaterialNum">
+    insert into tb_product_material_num
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="productMaterialNumId != null">
+        product_material_num_id,
+      </if>
+      <if test="productId != null">
+        product_id,
+      </if>
+      <if test="materialId != null">
+        material_id,
+      </if>
+      <if test="materialNum != null">
+        material_num,
+      </if>
+      <if test="gmtCreate != null">
+        gmt_create,
+      </if>
+      <if test="gmtUpdate != null">
+        gmt_update,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="productMaterialNumId != null">
+        #{productMaterialNumId,jdbcType=BIGINT},
+      </if>
+      <if test="productId != null">
+        #{productId,jdbcType=BIGINT},
+      </if>
+      <if test="materialId != null">
+        #{materialId,jdbcType=BIGINT},
+      </if>
+      <if test="materialNum != null">
+        #{materialNum,jdbcType=FLOAT},
+      </if>
+      <if test="gmtCreate != null">
+        #{gmtCreate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="gmtUpdate != null">
+        #{gmtUpdate,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.kone.utils.entity.ProductMaterialNum">
+    update tb_product_material_num
+    <set>
+      <if test="productId != null">
+        product_id = #{productId,jdbcType=BIGINT},
+      </if>
+      <if test="materialId != null">
+        material_id = #{materialId,jdbcType=BIGINT},
+      </if>
+      <if test="materialNum != null">
+        material_num = #{materialNum,jdbcType=FLOAT},
+      </if>
+      <if test="gmtCreate != null">
+        gmt_create = #{gmtCreate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="gmtUpdate != null">
+        gmt_update = #{gmtUpdate,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where product_material_num_id = #{productMaterialNumId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.kone.utils.entity.ProductMaterialNum">
+    update tb_product_material_num
+    set product_id = #{productId,jdbcType=BIGINT},
+      material_id = #{materialId,jdbcType=BIGINT},
+      material_num = #{materialNum,jdbcType=FLOAT},
+      gmt_create = #{gmtCreate,jdbcType=TIMESTAMP},
+      gmt_update = now(),
+      yn = #{yn}
+    where product_material_num_id = #{productMaterialNumId,jdbcType=BIGINT}
+  </update>
+
+
+  <resultMap id="MaterialNumResultMap" type="com.kone.utils.entity.ProductMaterialNum">
+    <id column="product_material_num_id" jdbcType="BIGINT" property="productMaterialNumId" />
+    <result column="product_id" jdbcType="BIGINT" property="productId" />
+    <result column="material_id" jdbcType="BIGINT" property="materialId" />
+    <result column="material_num" jdbcType="FLOAT" property="materialNum" />
+    <result column="gmt_create" jdbcType="TIMESTAMP" property="gmtCreate" />
+    <result column="gmt_update" jdbcType="TIMESTAMP" property="gmtUpdate" />
+    <result column="yn" jdbcType="INTEGER" property="yn" />
+
+    <association property="material" column="material_id" select="com.kone.commonsDao.dao.MaterialMapper.selectByPrimaryKey"></association>
+  </resultMap>
+
+  <select id="selectByProductId" parameterType="java.lang.Long" resultMap="MaterialNumResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from tb_product_material_num
+    WHERE product_id = #{productId}
+    AND yn = 0
+  </select>
+
+</mapper>

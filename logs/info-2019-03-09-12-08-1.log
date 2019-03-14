@@ -1,0 +1,1 @@
+[2019-03-09 12:08:00:898] [INFO] - com.netflix.config.ChainedDynamicProperty$ChainLink.checkAndFlip(ChainedDynamicProperty.java:115) - Flipping property: product-service.ribbon.ActiveConnectionsLimit to use NEXT property: niws.loadbalancer.availabilityFilteringRule.activeConnectionsLimit = 2147483647

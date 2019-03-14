@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.kone.commonsDao.dao.ProductMaterialMapper">
+  <resultMap id="BaseResultMap" type="com.kone.utils.entity.ProductMaterial">
+    <id column="product_material_id" jdbcType="BIGINT" property="productMaterialId" />
+    <result column="product_id" jdbcType="BIGINT" property="productId" />
+    <result column="product_num" jdbcType="BIGINT" property="productNum" />
+    <result column="gmt_create" jdbcType="TIMESTAMP" property="gmtCreate" />
+    <result column="gmt_update" jdbcType="TIMESTAMP" property="gmtUpdate" />
+    <result column="yn" jdbcType="INTEGER" property="yn" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    product_material_id, product_id, product_num, gmt_create, gmt_update,yn
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from tb_product_material
+    where product_material_id = #{productMaterialId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from tb_product_material
+    where product_material_id = #{productMaterialId,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.kone.utils.entity.ProductMaterial" useGeneratedKeys="true" keyProperty="productMaterialId">
+    insert into tb_product_material (product_material_id, product_id, product_num, 
+      gmt_create, gmt_update,yn)
+    values (#{productMaterialId,jdbcType=BIGINT}, #{productId,jdbcType=BIGINT}, #{productNum,jdbcType=BIGINT}, 
+      now(),now(),0)
+  </insert>
+  <insert id="insertSelective" parameterType="com.kone.utils.entity.ProductMaterial">
+    insert into tb_product_material
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="productMaterialId != null">
+        product_material_id,
+      </if>
+      <if test="productId != null">
+        product_id,
+      </if>
+      <if test="productNum != null">
+        product_num,
+      </if>
+      <if test="gmtCreate != null">
+        gmt_create,
+      </if>
+      <if test="gmtUpdate != null">
+        gmt_update,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="productMaterialId != null">
+        #{productMaterialId,jdbcType=BIGINT},
+      </if>
+      <if test="productId != null">
+        #{productId,jdbcType=BIGINT},
+      </if>
+      <if test="productNum != null">
+        #{productNum,jdbcType=BIGINT},
+      </if>
+      <if test="gmtCreate != null">
+        #{gmtCreate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="gmtUpdate != null">
+        #{gmtUpdate,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.kone.utils.entity.ProductMaterial">
+    update tb_product_material
+    <set>
+      <if test="productId != null">
+        product_id = #{productId,jdbcType=BIGINT},
+      </if>
+      <if test="productNum != null">
+        product_num = #{productNum,jdbcType=BIGINT},
+      </if>
+      <if test="gmtCreate != null">
+        gmt_create = #{gmtCreate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="gmtUpdate != null">
+        gmt_update = #{gmtUpdate,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where product_material_id = #{productMaterialId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.kone.utils.entity.ProductMaterial">
+    update tb_product_material
+    set product_id = #{productId,jdbcType=BIGINT},
+      product_num = #{productNum,jdbcType=BIGINT},
+      gmt_create = #{gmtCreate,jdbcType=TIMESTAMP},
+      gmt_update = #{gmtUpdate,jdbcType=TIMESTAMP},
+      yn = #{yn}
+    where product_material_id = #{productMaterialId,jdbcType=BIGINT}
+  </update>
+
+
+  <select id="selectByPager" parameterType="com.kone.utils.conditions.CommonCondition" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from tb_product_material
+    WHERE  yn = 0
+    AND product_id = #{id}
+    <if test="startTime != null and endTime != null">
+      AND gmt_create BETWEEN #{startTime} AND #{endTime}
+    </if>
+    limit #{pager.start},#{pager.size}
+  </select>
+  <select id="countByPager" parameterType="com.kone.utils.conditions.CommonCondition" resultType="java.lang.Long">
+    SELECT COUNT(*) FROM tb_product_material
+    WHERE yn=0
+    AND product_id = #{id}
+    <if test="startTime != null and endTime != null">
+      AND gmt_create BETWEEN #{startTime} AND #{endTime}
+    </if>
+  </select>
+
+  <select id="getSum" parameterType="com.kone.utils.conditions.CommonCondition" resultType="java.lang.Float">
+    SELECT SUM(product_num) FROM tb_product_material
+    WHERE yn=0
+    AND product_id = #{id}
+    <if test="startTime != null and endTime != null">
+      AND gmt_create BETWEEN #{startTime} AND #{endTime}
+    </if>
+  </select>
+</mapper>

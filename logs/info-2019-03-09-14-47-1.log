@@ -1,0 +1,8 @@
+[2019-03-09 14:47:58:699] [INFO] - org.springframework.cloud.netflix.eureka.serviceregistry.EurekaServiceRegistry.deregister(EurekaServiceRegistry.java:65) - Unregistering application FEIGN-USER with eureka with status DOWN
+[2019-03-09 14:47:58:710] [WARN] - com.netflix.discovery.DiscoveryClient$3.notify(DiscoveryClient.java:1303) - Saw local status change event StatusChangeEvent [timestamp=1552114078710, current=DOWN, previous=UP]
+[2019-03-09 14:47:58:710] [INFO] - com.netflix.discovery.DiscoveryClient.register(DiscoveryClient.java:826) - DiscoveryClient_FEIGN-USER/LAPTOP-VSBV5SCV:feign-user:8765: registering service...
+[2019-03-09 14:47:58:717] [INFO] - org.springframework.scheduling.concurrent.ExecutorConfigurationSupport.shutdown(ExecutorConfigurationSupport.java:208) - Shutting down ExecutorService 'applicationTaskExecutor'
+[2019-03-09 14:47:58:718] [INFO] - com.netflix.discovery.DiscoveryClient.register(DiscoveryClient.java:835) - DiscoveryClient_FEIGN-USER/LAPTOP-VSBV5SCV:feign-user:8765 - registration status: 204
+[2019-03-09 14:47:58:739] [INFO] - com.netflix.util.concurrent.ShutdownEnabledTimer.cancel(ShutdownEnabledTimer.java:67) - Shutdown hook removed for: NFLoadBalancer-PingTimer-product-service
+[2019-03-09 14:47:58:742] [INFO] - com.netflix.util.concurrent.ShutdownEnabledTimer.cancel(ShutdownEnabledTimer.java:67) - Shutdown hook removed for: NFLoadBalancer-PingTimer-order-service
+[2019-03-09 14:47:58:758] [INFO] - com.netflix.discovery.DiscoveryClient.shutdown(DiscoveryClient.java:888) - Shutting down DiscoveryClient ...

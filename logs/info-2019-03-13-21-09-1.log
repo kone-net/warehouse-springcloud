@@ -1,0 +1,7 @@
+[2019-03-13 21:09:09:512] [INFO] - com.netflix.discovery.shared.resolver.aws.ConfigClusterResolver.getClusterEndpoints(ConfigClusterResolver.java:43) - Resolving eureka endpoints via configuration
+[2019-03-13 21:09:58:387] [INFO] - org.springframework.cloud.netflix.eureka.serviceregistry.EurekaServiceRegistry.deregister(EurekaServiceRegistry.java:65) - Unregistering application FEIGN-USER with eureka with status DOWN
+[2019-03-13 21:09:58:399] [WARN] - com.netflix.discovery.DiscoveryClient$3.notify(DiscoveryClient.java:1303) - Saw local status change event StatusChangeEvent [timestamp=1552482598399, current=DOWN, previous=UP]
+[2019-03-13 21:09:58:407] [INFO] - com.netflix.discovery.DiscoveryClient.register(DiscoveryClient.java:826) - DiscoveryClient_FEIGN-USER/LAPTOP-VSBV5SCV:feign-user:8765: registering service...
+[2019-03-13 21:09:58:442] [INFO] - com.netflix.discovery.DiscoveryClient.register(DiscoveryClient.java:835) - DiscoveryClient_FEIGN-USER/LAPTOP-VSBV5SCV:feign-user:8765 - registration status: 204
+[2019-03-13 21:09:58:499] [INFO] - org.springframework.scheduling.concurrent.ExecutorConfigurationSupport.shutdown(ExecutorConfigurationSupport.java:208) - Shutting down ExecutorService 'applicationTaskExecutor'
+[2019-03-13 21:09:58:552] [INFO] - com.netflix.discovery.DiscoveryClient.shutdown(DiscoveryClient.java:888) - Shutting down DiscoveryClient ...

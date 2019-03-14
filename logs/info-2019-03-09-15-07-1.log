@@ -1,0 +1,4 @@
+[2019-03-09 15:07:21:160] [INFO] - com.netflix.discovery.shared.resolver.aws.ConfigClusterResolver.getClusterEndpoints(ConfigClusterResolver.java:43) - Resolving eureka endpoints via configuration
+[2019-03-09 15:07:37:269] [INFO] - com.kone.feignuser.controller.ProductController.viewProductMaterialNumByProductId(ProductController.java:68) - 4
+[2019-03-09 15:07:44:407] [INFO] - com.kone.feignuser.controller.ProductController.viewProductMaterialNumByProductId(ProductController.java:68) - 4
+[2019-03-09 15:07:52:707] [INFO] - com.kone.feignuser.controller.ProductController.viewProductMaterialNumByProductId(ProductController.java:68) - 4

@@ -1,0 +1,22 @@
+[2019-03-04 19:50:29:227] [INFO] - com.kone.feignuser.controller.FeignUserController.login(FeignUserController.java:29) - user kone is login!
+[2019-03-04 19:50:29:340] [INFO] - com.netflix.config.ChainedDynamicProperty$ChainLink.checkAndFlip(ChainedDynamicProperty.java:115) - Flipping property: user-service.ribbon.ActiveConnectionsLimit to use NEXT property: niws.loadbalancer.availabilityFilteringRule.activeConnectionsLimit = 2147483647
+[2019-03-04 19:50:29:343] [INFO] - com.netflix.util.concurrent.ShutdownEnabledTimer.<init>(ShutdownEnabledTimer.java:58) - Shutdown hook installed for: NFLoadBalancer-PingTimer-user-service
+[2019-03-04 19:50:29:344] [INFO] - com.netflix.loadbalancer.BaseLoadBalancer.initWithConfig(BaseLoadBalancer.java:197) - Client: user-service instantiated a LoadBalancer: DynamicServerListLoadBalancer:{NFLoadBalancer:name=user-service,current list of Servers=[],Load balancer stats=Zone stats: {},Server stats: []}ServerList:null
+[2019-03-04 19:50:29:350] [INFO] - com.netflix.loadbalancer.DynamicServerListLoadBalancer.enableAndInitLearnNewServersFeature(DynamicServerListLoadBalancer.java:222) - Using serverListUpdater PollingServerListUpdater
+[2019-03-04 19:50:29:353] [INFO] - com.netflix.config.ChainedDynamicProperty$ChainLink.checkAndFlip(ChainedDynamicProperty.java:115) - Flipping property: user-service.ribbon.ActiveConnectionsLimit to use NEXT property: niws.loadbalancer.availabilityFilteringRule.activeConnectionsLimit = 2147483647
+[2019-03-04 19:50:29:358] [INFO] - com.netflix.loadbalancer.DynamicServerListLoadBalancer.restOfInit(DynamicServerListLoadBalancer.java:150) - DynamicServerListLoadBalancer for client user-service initialized: DynamicServerListLoadBalancer:{NFLoadBalancer:name=user-service,current list of Servers=[localhost:8763],Load balancer stats=Zone stats: {defaultzone=[Zone:defaultzone;	Instance count:1;	Active connections count: 0;	Circuit breaker tripped count: 0;	Active connections per server: 0.0;]
+},Server stats: [[Server:localhost:8763;	Zone:defaultZone;	Total Requests:0;	Successive connection failure:0;	Total blackout seconds:0;	Last connection made:Thu Jan 01 08:00:00 CST 1970;	First connection made: Thu Jan 01 08:00:00 CST 1970;	Active Connections:0;	total failure count in last (1000) msecs:0;	average resp time:0.0;	90 percentile resp time:0.0;	95 percentile resp time:0.0;	min resp time:0.0;	max resp time:0.0;	stddev resp time:0.0]
+]}ServerList:org.springframework.cloud.netflix.ribbon.eureka.DomainExtractingServerList@4590a593
+[2019-03-04 19:50:29:781] [INFO] - com.kone.feignuser.controller.FeignUserController.login(FeignUserController.java:35) - not nullkone
+[2019-03-04 19:50:29:781] [INFO] - com.kone.feignuser.controller.FeignUserController.login(FeignUserController.java:37) - success
+[2019-03-04 19:50:30:355] [INFO] - com.netflix.config.ChainedDynamicProperty$ChainLink.checkAndFlip(ChainedDynamicProperty.java:115) - Flipping property: user-service.ribbon.ActiveConnectionsLimit to use NEXT property: niws.loadbalancer.availabilityFilteringRule.activeConnectionsLimit = 2147483647
+[2019-03-04 19:50:33:004] [INFO] - com.kone.feignuser.controller.MaterialController.viewMaterial(MaterialController.java:31) - ??1
+[2019-03-04 19:50:33:005] [INFO] - com.kone.feignuser.controller.MaterialController.viewMaterial(MaterialController.java:31) - ??1
+[2019-03-04 19:50:33:006] [INFO] - com.kone.feignuser.controller.MaterialController.viewMaterial(MaterialController.java:31) - ??2
+[2019-03-04 19:50:33:007] [INFO] - com.kone.feignuser.controller.MaterialController.viewMaterial(MaterialController.java:31) - material1
+[2019-03-04 19:50:33:007] [INFO] - com.kone.feignuser.controller.MaterialController.viewMaterial(MaterialController.java:31) - material2
+[2019-03-04 19:50:34:654] [INFO] - com.kone.feignuser.controller.MaterialController.viewMaterial(MaterialController.java:31) - ??1
+[2019-03-04 19:50:34:655] [INFO] - com.kone.feignuser.controller.MaterialController.viewMaterial(MaterialController.java:31) - ??1
+[2019-03-04 19:50:34:657] [INFO] - com.kone.feignuser.controller.MaterialController.viewMaterial(MaterialController.java:31) - ??2
+[2019-03-04 19:50:34:658] [INFO] - com.kone.feignuser.controller.MaterialController.viewMaterial(MaterialController.java:31) - material1
+[2019-03-04 19:50:34:660] [INFO] - com.kone.feignuser.controller.MaterialController.viewMaterial(MaterialController.java:31) - material2

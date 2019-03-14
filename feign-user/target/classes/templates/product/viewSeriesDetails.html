@@ -1,0 +1,178 @@
+﻿<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+      <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title></title>
+	<!-- Bootstrap Styles-->
+    <link href="/assets/css/bootstrap.css" rel="stylesheet" />
+     <!-- FontAwesome Styles-->
+    <link href="/assets/css/font-awesome.css" rel="stylesheet" />
+     <!-- Google Fonts-->
+   <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css' />
+</head>
+<body>
+
+    <div class="panel panel-success">
+
+        <div class="panel-heading">
+            <h3 class="panel-title">产品系列对应产品管理</h3>
+        </div>
+        <div class="panel-body">
+            <div class="col-md-6">
+                <br>
+                <button class="btn btn-success" data-toggle="modal" data-target="#myModal" id="add">添加关联产品</button>
+                <br>
+            </div>
+        </div>
+
+        <table class="table table-striped table-hover">
+
+            <tr>
+                <th>产品名称</th>
+                <th>产品模型</th>
+                <th>产品模具</th>
+                <th>产品数量</th>
+                <th>创建日期</th>
+                <th>删除</th>
+            </tr>
+            <tr th:each="data:${data.data}">
+                <td th:text="${data.product.productName}"></td>
+                <td th:text="${data.product.productModel}"></td>
+                <td th:text="${data.product.productMouldModel}"></td>
+                <td th:text="${data.product.productNum}"></td>
+                <td th:text="${#dates.format(data.gmtCreate, 'yyyy-MM-dd')}"></td>
+                <td>
+                    <button class="btn btn-sm btn-danger" th:onclick= "'javascript:deleteItem('+${data.productSeriesId}+')'">
+                        删除
+                    </button>
+                </td>
+            </tr>
+        </table>
+    </div>
+
+
+    <!-- 模态框（Modal） -->
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title" id="myModalLabel">保存信息</h4>
+                </div>
+                <div class="modal-body">
+                    <form id="form">
+                        <div class="input-group">
+                            <span class="input-group-addon">选择产品：</span>
+                            <select name="productId" class="form-control" id="product">
+
+                            </select>
+                        </div>
+                        <br>
+                        <input type="hidden" class="form-control" th:value="${productSeriesNameId}" name="productSeriesNameId" placeholder="产品ID"><br>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                    <button type="button" class="btn btn-primary" id="save">保存</button>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal -->
+    </div>
+    <!-- JS Scripts-->
+    <!-- jQuery Js -->
+    <script src="/assets/js/jquery-1.10.2.js"></script>
+      <!-- Bootstrap Js -->
+    <script src="/assets/js/bootstrap.min.js"></script>
+
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+    <script>
+        $("#save").click(function() {
+            var form = new FormData(document.getElementById("form"));
+            $.ajax({
+                type:"post",
+                url:"/product/saveProductSeries",
+                data:form,
+                dataType:"json",
+                processData:false,
+                contentType:false,
+                success:function(data){
+                    console.log(data);
+                    if(data.code == 200){
+                        swal("提交成功!", "", "success");
+                        window.setTimeout("location.reload()",700);
+                    }else{
+                        swal("提交失败！", data.msg, "error");
+                    }
+                },
+                error:function(msg){
+                    swal("提交失败！", "请重试！", "error");
+                    window.setTimeout("location.reload()",700);
+                }
+            })
+        })
+
+
+        $("#add").click(function() {
+            $.ajax({
+                type:"GET",
+                url:"/product/viewAllProduct",
+                data:{},
+                dataType:"json",
+                success:function(data){
+                    if(data.code == 200){
+                        $("#product").empty();
+                        for(var i=0;i<data.data.length;i++) {
+                            var option = "<option value='"+data.data[i].productId+"'>"+data.data[i].productName+"</option>";
+                            $("#product").append(option);
+                        }
+                    }else{
+                        swal("失败！", data.msg, "error");
+                    }
+                },
+                error:function(msg){
+                    swal("获取信息失败！", "请重试！", "error");
+                    window.setTimeout("location.reload()",700);
+                }
+            })
+        })
+
+        function deleteItem(id) {
+            swal({
+                title: "确认删除?",
+                text: "删除!",
+                icon: "warning",
+                buttons: true,
+                dangerMode: true,
+            }).then((willDelete) => {
+                if (willDelete) {
+                    $.ajax({
+                        type:"post",
+                        url:"/product/deleteProductSeries",
+                        data:{productSeriesId:id},
+                        dataType:"json",
+                        success:function(data){
+                            if(data.code == 200){
+                                swal("提交成功!", "", "success");
+                                window.setTimeout("location.reload()",700);
+                            }else{
+                                swal("提交失败！", data.msg, "error");
+                            }
+                        },
+                        error:function(msg){
+                            swal("提交失败！", "请重试！", "error");
+                            window.setTimeout("location.reload()",700);
+                        }
+                    })
+                } else {
+                    swal("Your imaginary file is safe!");
+        }
+        });
+
+        }
+    </script>
+   
+</body>
+</html>

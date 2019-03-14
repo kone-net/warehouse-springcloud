@@ -1,0 +1,173 @@
+﻿<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+      <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title></title>
+	<!-- Bootstrap Styles-->
+    <link href="/assets/css/bootstrap.css" rel="stylesheet" />
+     <!-- FontAwesome Styles-->
+    <link href="/assets/css/font-awesome.css" rel="stylesheet" />
+     <!-- Google Fonts-->
+   <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css' />
+</head>
+<body>
+
+    <div class="panel panel-success">
+
+        <div class="panel-heading">
+            <h3 class="panel-title">产品系列管理</h3>
+        </div>
+        <div class="panel-body">
+            <div class="col-md-6">
+                <br>
+                <button class="btn btn-success" data-toggle="modal" data-target="#myModal">添加产品系列</button>
+                <br>
+            </div>
+        </div>
+
+        <table class="table table-striped table-hover">
+
+            <tr>
+                <th>产品编号</th>
+                <th>产品系列名称</th>
+                <th>创建日期</th>
+                <th>系列内容</th>
+                <th>删除</th>
+            </tr>
+            <tr th:each="data:${data.data}">
+                <td th:text="${data.productSeriesNameId}"></td>
+                <td th:text="${data.productSeriesName}"></td>
+
+                <td th:text="${#dates.format(data.gmtCreate, 'yyyy-MM-dd')}"></td>
+                <td>
+                    <button class="btn btn-sm btn-success" th:onclick= "'javascript:go('+${data.productSeriesNameId}+')'">
+                        查看系列内容
+                    </button>
+                </td>
+
+                <td>
+                    <button class="btn btn-sm btn-danger" th:onclick= "'javascript:deleteItem('+${data.productSeriesNameId}+')'">
+                        删除
+                    </button>
+                </td>
+
+            </tr>
+        </table>
+    </div>
+
+    <ul class="pager">
+        <li class="previous"><a href="#" th:onclick= "'javascript:pager('+${data.pager.num}+',0)'">&larr; 上一页</a></li>
+        总共<span th:text="${data.pager.total}"></span>条，共<span th:text="${data.pager.page}"></span>页,当前第<span th:text="${data.pager.num + 1}"></span>页
+        <li class="next"><a href="#" th:onclick= "'javascript:pager('+${data.pager.num}+',1)'">下一页 &rarr;</a></li>
+    </ul>
+
+
+    <!-- 模态框（Modal） -->
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title" id="myModalLabel">保存信息</h4>
+                </div>
+                <div class="modal-body">
+                    <form id="form">
+                        <input type="text" class="form-control" name="productSeriesName" placeholder="产品系列名称"><br>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                    <button type="button" class="btn btn-primary" id="save">保存</button>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal -->
+    </div>
+
+    <!-- JS Scripts-->
+    <!-- jQuery Js -->
+    <script src="/assets/js/jquery-1.10.2.js"></script>
+      <!-- Bootstrap Js -->
+    <script src="/assets/js/bootstrap.min.js"></script>
+
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+    <script>
+        $("#save").click(function() {
+            var form = new FormData(document.getElementById("form"));
+            $.ajax({
+                type:"post",
+                url:"/product/saveProductSeriesName",
+                data:form,
+                dataType:"json",
+                processData:false,
+                contentType:false,
+                success:function(data){
+                    console.log(data);
+                    if(data.code == 200){
+                        swal("提交成功!", "", "success");
+                        window.setTimeout("location.reload()",700);
+                    }else{
+                        swal("提交失败！", data.msg, "error");
+                    }
+                },
+                error:function(msg){
+                    swal("提交失败！", "请重试！", "error");
+                    window.setTimeout("location.reload()",700);
+                }
+            })
+        })
+
+        function go(id) {
+            window.location.href = '/product/viewSeriesDetails?id=' + id;
+        }
+
+
+
+        function pager(num, type) {
+            if(0 == type) {
+                num = num - 1;
+            } else {
+                num = num + 1;
+            }
+            window.location.href='/product/viewProductSeriesName?pager.size=10&pager.num=' + num;
+        }
+
+        function deleteItem(id) {
+            swal({
+                title: "确认删除?",
+                text: "删除!",
+                icon: "warning",
+                buttons: true,
+                dangerMode: true,
+            }).then((willDelete) => {
+                if (willDelete) {
+                    $.ajax({
+                        type:"post",
+                        url:"/product/deleteProductSeriesName",
+                        data:{productSeriesNameId:id},
+                        dataType:"json",
+                        success:function(data){
+                            if(data.code == 200){
+                                swal("提交成功!", "", "success");
+                                window.setTimeout("location.reload()",700);
+                            }else{
+                                swal("提交失败！", data.msg, "error");
+                            }
+                        },
+                        error:function(msg){
+                            swal("提交失败！", "请重试！", "error");
+                            window.setTimeout("location.reload()",700);
+                        }
+                    })
+                } else {
+                    swal("Your imaginary file is safe!");
+        }
+        });
+
+        }
+    </script>
+   
+</body>
+</html>

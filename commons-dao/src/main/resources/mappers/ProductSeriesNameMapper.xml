@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.kone.commonsDao.dao.ProductSeriesNameMapper">
+  <resultMap id="BaseResultMap" type="com.kone.utils.entity.ProductSeriesName">
+    <id column="product_series_name_id" jdbcType="BIGINT" property="productSeriesNameId" />
+    <result column="product_series_name" jdbcType="VARCHAR" property="productSeriesName" />
+    <result column="gmt_create" jdbcType="TIMESTAMP" property="gmtCreate" />
+    <result column="gmt_update" jdbcType="TIMESTAMP" property="gmtUpdate" />
+    <result column="yn" jdbcType="INTEGER" property="yn" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    product_series_name_id, product_series_name, gmt_create, gmt_update,yn
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from tb_product_series_name
+    where product_series_name_id = #{productSeriesNameId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from tb_product_series_name
+    where product_series_name_id = #{productSeriesNameId,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.kone.utils.entity.ProductSeriesName">
+    insert into tb_product_series_name (product_series_name_id, product_series_name, 
+      gmt_create, gmt_update,yn)
+    values (#{productSeriesNameId,jdbcType=BIGINT}, #{productSeriesName,jdbcType=VARCHAR}, 
+      now(),now(),0)
+  </insert>
+  <insert id="insertSelective" parameterType="com.kone.utils.entity.ProductSeriesName">
+    insert into tb_product_series_name
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="productSeriesNameId != null">
+        product_series_name_id,
+      </if>
+      <if test="productSeriesName != null">
+        product_series_name,
+      </if>
+      <if test="gmtCreate != null">
+        gmt_create,
+      </if>
+      <if test="gmtUpdate != null">
+        gmt_update,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="productSeriesNameId != null">
+        #{productSeriesNameId,jdbcType=BIGINT},
+      </if>
+      <if test="productSeriesName != null">
+        #{productSeriesName,jdbcType=VARCHAR},
+      </if>
+      <if test="gmtCreate != null">
+        #{gmtCreate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="gmtUpdate != null">
+        #{gmtUpdate,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.kone.utils.entity.ProductSeriesName">
+    update tb_product_series_name
+    <set>
+      <if test="productSeriesName != null">
+        product_series_name = #{productSeriesName,jdbcType=VARCHAR},
+      </if>
+      <if test="gmtCreate != null">
+        gmt_create = #{gmtCreate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="gmtUpdate != null">
+        gmt_update = #{gmtUpdate,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where product_series_name_id = #{productSeriesNameId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.kone.utils.entity.ProductSeriesName">
+    update tb_product_series_name
+    set product_series_name = #{productSeriesName,jdbcType=VARCHAR},
+      gmt_create = #{gmtCreate,jdbcType=TIMESTAMP},
+      gmt_update = #{gmtUpdate,jdbcType=TIMESTAMP},
+      yn = #{yn}
+    where product_series_name_id = #{productSeriesNameId,jdbcType=BIGINT}
+  </update>
+  <select id="selectByPager" parameterType="com.kone.utils.conditions.CommonCondition" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from tb_product_series_name
+    WHERE yn=0
+    ORDER BY product_series_name_id DESC
+    limit #{pager.start},#{pager.size}
+  </select>
+  <select id="countByPager" parameterType="com.kone.utils.conditions.CommonCondition" resultType="java.lang.Long">
+    SELECT COUNT(*) FROM tb_product_series_name
+    WHERE yn=0
+  </select>
+
+  <select id="selectByName" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from tb_product_series_name
+    WHERE product_series_name=#{name}
+    AND yn=0
+    limit 0,1
+  </select>
+
+  <select id="selectAllProductSeriesName" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from tb_product_series_name
+    WHERE yn=0
+  </select>
+</mapper>

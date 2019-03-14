@@ -1,0 +1,4 @@
+[2019-03-13 16:55:25:954] [INFO] - com.kone.feignuser.controller.ProductController.viewProductIn(ProductController.java:189) - product id is 1
+[2019-03-13 16:55:27:883] [INFO] - com.kone.feignuser.controller.ProductController.viewProductIn(ProductController.java:189) - product id is 2
+[2019-03-13 16:55:29:672] [INFO] - com.kone.feignuser.controller.ProductController.viewProductIn(ProductController.java:189) - product id is 3
+[2019-03-13 16:55:31:427] [INFO] - com.kone.feignuser.controller.ProductController.viewProductIn(ProductController.java:189) - product id is 4

@@ -1,0 +1,4 @@
+[2019-03-07 09:47:01:221] [INFO] - com.kone.feignuser.controller.FeignUserController.login(FeignUserController.java:29) - user kone is login!
+[2019-03-07 09:47:01:238] [INFO] - com.kone.feignuser.controller.FeignUserController.login(FeignUserController.java:32) - null
+[2019-03-07 09:47:01:239] [INFO] - com.kone.feignuser.controller.FeignUserController.login(FeignUserController.java:37) - 服务器内部错误
+[2019-03-07 09:47:24:341] [INFO] - com.netflix.config.ChainedDynamicProperty$ChainLink.checkAndFlip(ChainedDynamicProperty.java:115) - Flipping property: user-service.ribbon.ActiveConnectionsLimit to use NEXT property: niws.loadbalancer.availabilityFilteringRule.activeConnectionsLimit = 2147483647

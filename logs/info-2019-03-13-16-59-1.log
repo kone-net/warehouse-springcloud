@@ -1,0 +1,8 @@
+[2019-03-13 16:59:00:080] [INFO] - com.kone.feignuser.controller.ProductController.viewProductIn(ProductController.java:189) - product id is 1
+[2019-03-13 16:59:07:309] [INFO] - com.kone.feignuser.controller.ProductController.viewProductIn(ProductController.java:189) - product id is 1
+[2019-03-13 16:59:09:687] [INFO] - com.kone.feignuser.controller.ProductController.viewProductIn(ProductController.java:189) - product id is 2
+[2019-03-13 16:59:13:029] [INFO] - com.kone.feignuser.controller.ProductController.viewProductIn(ProductController.java:189) - product id is 3
+[2019-03-13 16:59:15:764] [INFO] - com.kone.feignuser.controller.ProductController.viewProductIn(ProductController.java:189) - product id is 4
+[2019-03-13 16:59:18:489] [INFO] - com.kone.feignuser.controller.ProductController.viewProductIn(ProductController.java:189) - product id is 1
+[2019-03-13 16:59:23:517] [INFO] - com.kone.feignuser.controller.ProductController.viewProductIn(ProductController.java:189) - product id is 1
+[2019-03-13 16:59:27:797] [INFO] - com.kone.feignuser.controller.ProductController.viewProductIn(ProductController.java:189) - product id is 1

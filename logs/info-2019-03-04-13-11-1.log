@@ -1,0 +1,50 @@
+[2019-03-04 13:11:00:084] [INFO] - org.springframework.scheduling.concurrent.ExecutorConfigurationSupport.initialize(ExecutorConfigurationSupport.java:171) - Initializing ExecutorService 'applicationTaskExecutor'
+[2019-03-04 13:11:00:240] [INFO] - org.springframework.boot.autoconfigure.web.servlet.WelcomePageHandlerMapping.<init>(WelcomePageHandlerMapping.java:61) - Adding welcome page template: index
+[2019-03-04 13:11:00:864] [INFO] - org.springframework.boot.actuate.endpoint.web.EndpointLinksResolver.<init>(EndpointLinksResolver.java:59) - Exposing 2 endpoint(s) beneath base path '/actuator'
+[2019-03-04 13:11:00:961] [INFO] - org.springframework.cloud.netflix.eureka.InstanceInfoFactory.create(InstanceInfoFactory.java:71) - Setting initial instance status as: STARTING
+[2019-03-04 13:11:01:003] [INFO] - com.netflix.discovery.DiscoveryClient.<init>(DiscoveryClient.java:349) - Initializing Eureka in region us-east-1
+[2019-03-04 13:11:01:500] [INFO] - com.netflix.discovery.provider.DiscoveryJerseyProvider.<init>(DiscoveryJerseyProvider.java:70) - Using JSON encoding codec LegacyJacksonJson
+[2019-03-04 13:11:01:500] [INFO] - com.netflix.discovery.provider.DiscoveryJerseyProvider.<init>(DiscoveryJerseyProvider.java:71) - Using JSON decoding codec LegacyJacksonJson
+[2019-03-04 13:11:01:605] [INFO] - com.netflix.discovery.provider.DiscoveryJerseyProvider.<init>(DiscoveryJerseyProvider.java:80) - Using XML encoding codec XStreamXml
+[2019-03-04 13:11:01:606] [INFO] - com.netflix.discovery.provider.DiscoveryJerseyProvider.<init>(DiscoveryJerseyProvider.java:81) - Using XML decoding codec XStreamXml
+[2019-03-04 13:11:01:797] [INFO] - com.netflix.discovery.shared.resolver.aws.ConfigClusterResolver.getClusterEndpoints(ConfigClusterResolver.java:43) - Resolving eureka endpoints via configuration
+[2019-03-04 13:11:02:045] [INFO] - com.netflix.discovery.DiscoveryClient.fetchRegistry(DiscoveryClient.java:958) - Disable delta property : false
+[2019-03-04 13:11:02:046] [INFO] - com.netflix.discovery.DiscoveryClient.fetchRegistry(DiscoveryClient.java:959) - Single vip registry refresh property : null
+[2019-03-04 13:11:02:046] [INFO] - com.netflix.discovery.DiscoveryClient.fetchRegistry(DiscoveryClient.java:960) - Force full registry fetch : false
+[2019-03-04 13:11:02:046] [INFO] - com.netflix.discovery.DiscoveryClient.fetchRegistry(DiscoveryClient.java:961) - Application is null : false
+[2019-03-04 13:11:02:047] [INFO] - com.netflix.discovery.DiscoveryClient.fetchRegistry(DiscoveryClient.java:962) - Registered Applications size is zero : true
+[2019-03-04 13:11:02:047] [INFO] - com.netflix.discovery.DiscoveryClient.fetchRegistry(DiscoveryClient.java:964) - Application version is -1: true
+[2019-03-04 13:11:02:047] [INFO] - com.netflix.discovery.DiscoveryClient.getAndStoreFullRegistry(DiscoveryClient.java:1047) - Getting all instance registry info from the eureka server
+[2019-03-04 13:11:02:163] [INFO] - com.netflix.discovery.DiscoveryClient.getAndStoreFullRegistry(DiscoveryClient.java:1056) - The response status is 200
+[2019-03-04 13:11:02:167] [INFO] - com.netflix.discovery.DiscoveryClient.initScheduledTasks(DiscoveryClient.java:1270) - Starting heartbeat executor: renew interval is: 30
+[2019-03-04 13:11:02:170] [INFO] - com.netflix.discovery.InstanceInfoReplicator.<init>(InstanceInfoReplicator.java:60) - InstanceInfoReplicator onDemand update allowed rate per min is 4
+[2019-03-04 13:11:02:174] [INFO] - com.netflix.discovery.DiscoveryClient.<init>(DiscoveryClient.java:449) - Discovery Client initialized at timestamp 1551676262173 with initial instances count: 3
+[2019-03-04 13:11:02:176] [INFO] - org.springframework.cloud.netflix.eureka.serviceregistry.EurekaServiceRegistry.register(EurekaServiceRegistry.java:42) - Registering application FEIGN-USER with eureka with status UP
+[2019-03-04 13:11:02:177] [INFO] - com.netflix.discovery.DiscoveryClient$3.notify(DiscoveryClient.java:1305) - Saw local status change event StatusChangeEvent [timestamp=1551676262177, current=UP, previous=STARTING]
+[2019-03-04 13:11:02:180] [INFO] - com.netflix.discovery.DiscoveryClient.register(DiscoveryClient.java:826) - DiscoveryClient_FEIGN-USER/LAPTOP-VSBV5SCV.cn.ibm.com:feign-user:8765: registering service...
+[2019-03-04 13:11:02:210] [INFO] - org.apache.juli.logging.DirectJDKLog.log(DirectJDKLog.java:173) - Starting ProtocolHandler ["http-nio-8765"]
+[2019-03-04 13:11:02:226] [INFO] - com.netflix.discovery.DiscoveryClient.register(DiscoveryClient.java:835) - DiscoveryClient_FEIGN-USER/LAPTOP-VSBV5SCV.cn.ibm.com:feign-user:8765 - registration status: 204
+[2019-03-04 13:11:02:241] [INFO] - org.springframework.boot.web.embedded.tomcat.TomcatWebServer.start(TomcatWebServer.java:204) - Tomcat started on port(s): 8765 (http) with context path ''
+[2019-03-04 13:11:02:242] [INFO] - org.springframework.cloud.netflix.eureka.serviceregistry.EurekaAutoServiceRegistration.onApplicationEvent(EurekaAutoServiceRegistration.java:141) - Updating port to 8765
+[2019-03-04 13:11:02:245] [INFO] - org.springframework.boot.StartupInfoLogger.logStarted(StartupInfoLogger.java:59) - Started FeignUserApplication in 9.547 seconds (JVM running for 11.676)
+[2019-03-04 13:11:02:510] [INFO] - org.apache.juli.logging.DirectJDKLog.log(DirectJDKLog.java:173) - Initializing Spring DispatcherServlet 'dispatcherServlet'
+[2019-03-04 13:11:02:510] [INFO] - org.springframework.web.servlet.FrameworkServlet.initServletBean(FrameworkServlet.java:524) - Initializing Servlet 'dispatcherServlet'
+[2019-03-04 13:11:02:517] [INFO] - org.springframework.cloud.config.client.ConfigServicePropertySourceLocator.getRemoteEnvironment(ConfigServicePropertySourceLocator.java:205) - Fetching config from server at : http://localhost:8888
+[2019-03-04 13:11:02:523] [INFO] - org.springframework.web.servlet.FrameworkServlet.initServletBean(FrameworkServlet.java:546) - Completed initialization in 13 ms
+[2019-03-04 13:11:03:525] [INFO] - org.springframework.cloud.config.client.ConfigServicePropertySourceLocator.getRemoteEnvironment(ConfigServicePropertySourceLocator.java:227) - Connect Timeout Exception on Url - http://localhost:8888. Will be trying the next url if available
+[2019-03-04 13:11:03:527] [WARN] - org.springframework.cloud.config.client.ConfigServicePropertySourceLocator.locate(ConfigServicePropertySourceLocator.java:140) - Could not locate PropertySource: I/O error on GET request for "http://localhost:8888/feign-user/default": Connection refused: connect; nested exception is java.net.ConnectException: Connection refused: connect
+[2019-03-04 13:11:09:610] [INFO] - com.kone.feignuser.controller.FeignUserController.login(FeignUserController.java:29) - user kone is login!
+[2019-03-04 13:11:10:679] [INFO] - com.netflix.config.ChainedDynamicProperty$ChainLink.checkAndFlip(ChainedDynamicProperty.java:115) - Flipping property: user-service.ribbon.ActiveConnectionsLimit to use NEXT property: niws.loadbalancer.availabilityFilteringRule.activeConnectionsLimit = 2147483647
+[2019-03-04 13:11:10:752] [INFO] - com.netflix.util.concurrent.ShutdownEnabledTimer.<init>(ShutdownEnabledTimer.java:58) - Shutdown hook installed for: NFLoadBalancer-PingTimer-user-service
+[2019-03-04 13:11:10:787] [INFO] - com.netflix.loadbalancer.BaseLoadBalancer.initWithConfig(BaseLoadBalancer.java:197) - Client: user-service instantiated a LoadBalancer: DynamicServerListLoadBalancer:{NFLoadBalancer:name=user-service,current list of Servers=[],Load balancer stats=Zone stats: {},Server stats: []}ServerList:null
+[2019-03-04 13:11:10:809] [INFO] - com.netflix.loadbalancer.DynamicServerListLoadBalancer.enableAndInitLearnNewServersFeature(DynamicServerListLoadBalancer.java:222) - Using serverListUpdater PollingServerListUpdater
+[2019-03-04 13:11:10:867] [INFO] - com.netflix.config.ChainedDynamicProperty$ChainLink.checkAndFlip(ChainedDynamicProperty.java:115) - Flipping property: user-service.ribbon.ActiveConnectionsLimit to use NEXT property: niws.loadbalancer.availabilityFilteringRule.activeConnectionsLimit = 2147483647
+[2019-03-04 13:11:10:871] [INFO] - com.netflix.loadbalancer.DynamicServerListLoadBalancer.restOfInit(DynamicServerListLoadBalancer.java:150) - DynamicServerListLoadBalancer for client user-service initialized: DynamicServerListLoadBalancer:{NFLoadBalancer:name=user-service,current list of Servers=[localhost:8763],Load balancer stats=Zone stats: {defaultzone=[Zone:defaultzone;	Instance count:1;	Active connections count: 0;	Circuit breaker tripped count: 0;	Active connections per server: 0.0;]
+},Server stats: [[Server:localhost:8763;	Zone:defaultZone;	Total Requests:0;	Successive connection failure:0;	Total blackout seconds:0;	Last connection made:Thu Jan 01 08:00:00 CST 1970;	First connection made: Thu Jan 01 08:00:00 CST 1970;	Active Connections:0;	total failure count in last (1000) msecs:0;	average resp time:0.0;	90 percentile resp time:0.0;	95 percentile resp time:0.0;	min resp time:0.0;	max resp time:0.0;	stddev resp time:0.0]
+]}ServerList:org.springframework.cloud.netflix.ribbon.eureka.DomainExtractingServerList@2829d81
+[2019-03-04 13:11:11:062] [INFO] - com.kone.feignuser.controller.FeignUserController.login(FeignUserController.java:32) - null
+[2019-03-04 13:11:11:063] [INFO] - com.kone.feignuser.controller.FeignUserController.login(FeignUserController.java:37) - 服务器内部错误
+[2019-03-04 13:11:11:817] [INFO] - com.netflix.config.ChainedDynamicProperty$ChainLink.checkAndFlip(ChainedDynamicProperty.java:115) - Flipping property: user-service.ribbon.ActiveConnectionsLimit to use NEXT property: niws.loadbalancer.availabilityFilteringRule.activeConnectionsLimit = 2147483647
+[2019-03-04 13:11:15:147] [INFO] - com.kone.feignuser.controller.FeignUserController.login(FeignUserController.java:29) - user kone is login!
+[2019-03-04 13:11:15:218] [INFO] - com.kone.feignuser.controller.FeignUserController.login(FeignUserController.java:35) - not nullkone
+[2019-03-04 13:11:15:220] [INFO] - com.kone.feignuser.controller.FeignUserController.login(FeignUserController.java:37) - success

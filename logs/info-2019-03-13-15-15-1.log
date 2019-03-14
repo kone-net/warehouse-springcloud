@@ -1,0 +1,32 @@
+[2019-03-13 15:15:00:358] [INFO] - org.springframework.cloud.netflix.eureka.InstanceInfoFactory.create(InstanceInfoFactory.java:71) - Setting initial instance status as: STARTING
+[2019-03-13 15:15:00:373] [INFO] - com.netflix.discovery.DiscoveryClient.<init>(DiscoveryClient.java:349) - Initializing Eureka in region us-east-1
+[2019-03-13 15:15:00:379] [INFO] - com.netflix.discovery.provider.DiscoveryJerseyProvider.<init>(DiscoveryJerseyProvider.java:70) - Using JSON encoding codec LegacyJacksonJson
+[2019-03-13 15:15:00:379] [INFO] - com.netflix.discovery.provider.DiscoveryJerseyProvider.<init>(DiscoveryJerseyProvider.java:71) - Using JSON decoding codec LegacyJacksonJson
+[2019-03-13 15:15:00:380] [INFO] - com.netflix.discovery.provider.DiscoveryJerseyProvider.<init>(DiscoveryJerseyProvider.java:80) - Using XML encoding codec XStreamXml
+[2019-03-13 15:15:00:381] [INFO] - com.netflix.discovery.provider.DiscoveryJerseyProvider.<init>(DiscoveryJerseyProvider.java:81) - Using XML decoding codec XStreamXml
+[2019-03-13 15:15:00:519] [INFO] - com.netflix.discovery.shared.resolver.aws.ConfigClusterResolver.getClusterEndpoints(ConfigClusterResolver.java:43) - Resolving eureka endpoints via configuration
+[2019-03-13 15:15:00:521] [INFO] - com.netflix.discovery.DiscoveryClient.fetchRegistry(DiscoveryClient.java:958) - Disable delta property : false
+[2019-03-13 15:15:00:522] [INFO] - com.netflix.discovery.DiscoveryClient.fetchRegistry(DiscoveryClient.java:959) - Single vip registry refresh property : null
+[2019-03-13 15:15:00:522] [INFO] - com.netflix.discovery.DiscoveryClient.fetchRegistry(DiscoveryClient.java:960) - Force full registry fetch : false
+[2019-03-13 15:15:00:522] [INFO] - com.netflix.discovery.DiscoveryClient.fetchRegistry(DiscoveryClient.java:961) - Application is null : false
+[2019-03-13 15:15:00:522] [INFO] - com.netflix.discovery.DiscoveryClient.fetchRegistry(DiscoveryClient.java:962) - Registered Applications size is zero : true
+[2019-03-13 15:15:00:523] [INFO] - com.netflix.discovery.DiscoveryClient.fetchRegistry(DiscoveryClient.java:964) - Application version is -1: true
+[2019-03-13 15:15:00:523] [INFO] - com.netflix.discovery.DiscoveryClient.getAndStoreFullRegistry(DiscoveryClient.java:1047) - Getting all instance registry info from the eureka server
+[2019-03-13 15:15:00:531] [INFO] - com.netflix.discovery.DiscoveryClient.getAndStoreFullRegistry(DiscoveryClient.java:1056) - The response status is 200
+[2019-03-13 15:15:00:533] [INFO] - com.netflix.discovery.DiscoveryClient.initScheduledTasks(DiscoveryClient.java:1270) - Starting heartbeat executor: renew interval is: 30
+[2019-03-13 15:15:00:534] [INFO] - com.netflix.discovery.InstanceInfoReplicator.<init>(InstanceInfoReplicator.java:60) - InstanceInfoReplicator onDemand update allowed rate per min is 4
+[2019-03-13 15:15:00:536] [INFO] - com.netflix.discovery.DiscoveryClient.<init>(DiscoveryClient.java:449) - Discovery Client initialized at timestamp 1552461300536 with initial instances count: 2
+[2019-03-13 15:15:00:542] [INFO] - org.springframework.cloud.netflix.eureka.serviceregistry.EurekaServiceRegistry.register(EurekaServiceRegistry.java:42) - Registering application FEIGN-USER with eureka with status UP
+[2019-03-13 15:15:00:543] [INFO] - com.netflix.discovery.DiscoveryClient$3.notify(DiscoveryClient.java:1305) - Saw local status change event StatusChangeEvent [timestamp=1552461300543, current=UP, previous=STARTING]
+[2019-03-13 15:15:00:544] [INFO] - springfox.documentation.spring.web.plugins.DocumentationPluginsBootstrapper.start(DocumentationPluginsBootstrapper.java:120) - Context refreshed
+[2019-03-13 15:15:00:545] [INFO] - com.netflix.discovery.DiscoveryClient.register(DiscoveryClient.java:826) - DiscoveryClient_FEIGN-USER/LAPTOP-VSBV5SCV.cn.ibm.com:feign-user:8765: registering service...
+[2019-03-13 15:15:00:548] [INFO] - springfox.documentation.spring.web.plugins.DocumentationPluginsBootstrapper.start(DocumentationPluginsBootstrapper.java:123) - Found 1 custom documentation plugin(s)
+[2019-03-13 15:15:00:554] [INFO] - com.netflix.discovery.DiscoveryClient.register(DiscoveryClient.java:835) - DiscoveryClient_FEIGN-USER/LAPTOP-VSBV5SCV.cn.ibm.com:feign-user:8765 - registration status: 204
+[2019-03-13 15:15:00:555] [INFO] - springfox.documentation.spring.web.scanners.ApiListingReferenceScanner.scan(ApiListingReferenceScanner.java:41) - Scanning for api listing references
+[2019-03-13 15:15:00:778] [INFO] - springfox.documentation.spring.web.readers.operation.CachingOperationNameGenerator.startingWith(CachingOperationNameGenerator.java:40) - Generating unique operation named: saveMaterialUsingPOST_1
+[2019-03-13 15:15:00:871] [INFO] - springfox.documentation.spring.web.readers.operation.CachingOperationNameGenerator.startingWith(CachingOperationNameGenerator.java:40) - Generating unique operation named: viewMaterialUsingGET_1
+[2019-03-13 15:15:01:012] [INFO] - org.apache.juli.logging.DirectJDKLog.log(DirectJDKLog.java:173) - Starting ProtocolHandler ["http-nio-8765"]
+[2019-03-13 15:15:01:031] [INFO] - org.springframework.boot.web.embedded.tomcat.TomcatWebServer.start(TomcatWebServer.java:204) - Tomcat started on port(s): 8765 (http) with context path ''
+[2019-03-13 15:15:01:032] [INFO] - org.springframework.cloud.netflix.eureka.serviceregistry.EurekaAutoServiceRegistration.onApplicationEvent(EurekaAutoServiceRegistration.java:141) - Updating port to 8765
+[2019-03-13 15:15:01:033] [INFO] - org.springframework.boot.StartupInfoLogger.logStarted(StartupInfoLogger.java:59) - Started FeignUserApplication in 12.79 seconds (JVM running for 1319.724)
+[2019-03-13 15:15:01:049] [INFO] - org.springframework.boot.devtools.autoconfigure.ConditionEvaluationDeltaLoggingListener.onApplicationEvent(ConditionEvaluationDeltaLoggingListener.java:70) - Condition evaluation unchanged

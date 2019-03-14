@@ -1,0 +1,6 @@
+[2019-03-04 15:31:16:180] [INFO] - com.kone.feignuser.controller.FeignUserController.login(FeignUserController.java:29) - user kone is login!
+[2019-03-04 15:31:16:429] [INFO] - com.kone.feignuser.controller.FeignUserController.login(FeignUserController.java:35) - not nullkone
+[2019-03-04 15:31:16:431] [INFO] - com.kone.feignuser.controller.FeignUserController.login(FeignUserController.java:37) - success
+[2019-03-04 15:31:47:317] [INFO] - com.kone.feignuser.controller.FeignUserController.login(FeignUserController.java:29) - user kone is login!
+[2019-03-04 15:31:47:373] [INFO] - com.kone.feignuser.controller.FeignUserController.login(FeignUserController.java:35) - not nullkone
+[2019-03-04 15:31:47:377] [INFO] - com.kone.feignuser.controller.FeignUserController.login(FeignUserController.java:37) - success

@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.kone.commonsDao.dao.OrderMapper">
+  <resultMap id="BaseResultMap" type="com.kone.utils.entity.Order">
+    <id column="order_id" jdbcType="BIGINT" property="orderId" />
+    <result column="order_num" jdbcType="VARCHAR" property="orderNum" />
+    <result column="order_date" jdbcType="VARCHAR" property="orderDate" />
+    <result column="buyer_name" jdbcType="VARCHAR" property="buyerName" />
+    <result column="buyer_address" jdbcType="VARCHAR" property="buyerAddress" />
+    <result column="buyer_contact" jdbcType="VARCHAR" property="buyerContact" />
+    <result column="buyer_phone" jdbcType="VARCHAR" property="buyerPhone" />
+    <result column="buyer_mail" jdbcType="VARCHAR" property="buyerMail" />
+    <result column="gmt_create" jdbcType="TIMESTAMP" property="gmtCreate" />
+    <result column="gmt_update" jdbcType="TIMESTAMP" property="gmtUpdate" />
+    <result column="yn" jdbcType="INTEGER" property="yn" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    order_id, order_num, order_date, buyer_name, buyer_address, buyer_contact, buyer_phone, 
+    buyer_mail, gmt_create, gmt_update, yn
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from tb_order
+    where order_id = #{orderId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from tb_order
+    where order_id = #{orderId,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.kone.utils.entity.Order">
+    insert into tb_order (order_id, order_num, order_date, 
+      buyer_name, buyer_address, buyer_contact, 
+      buyer_phone, buyer_mail, gmt_create, 
+      gmt_update, yn)
+    values (#{orderId,jdbcType=BIGINT}, #{orderNum,jdbcType=VARCHAR}, #{orderDate,jdbcType=VARCHAR}, 
+      #{buyerName,jdbcType=VARCHAR}, #{buyerAddress,jdbcType=VARCHAR}, #{buyerContact,jdbcType=VARCHAR}, 
+      #{buyerPhone,jdbcType=VARCHAR}, #{buyerMail,jdbcType=VARCHAR}, now(), now(), 0)
+  </insert>
+  <insert id="insertSelective" parameterType="com.kone.utils.entity.Order">
+    insert into tb_order
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="orderId != null">
+        order_id,
+      </if>
+      <if test="orderNum != null">
+        order_num,
+      </if>
+      <if test="orderDate != null">
+        order_date,
+      </if>
+      <if test="buyerName != null">
+        buyer_name,
+      </if>
+      <if test="buyerAddress != null">
+        buyer_address,
+      </if>
+      <if test="buyerContact != null">
+        buyer_contact,
+      </if>
+      <if test="buyerPhone != null">
+        buyer_phone,
+      </if>
+      <if test="buyerMail != null">
+        buyer_mail,
+      </if>
+      <if test="gmtCreate != null">
+        gmt_create,
+      </if>
+      <if test="gmtUpdate != null">
+        gmt_update,
+      </if>
+      <if test="yn != null">
+        yn,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="orderId != null">
+        #{orderId,jdbcType=BIGINT},
+      </if>
+      <if test="orderNum != null">
+        #{orderNum,jdbcType=VARCHAR},
+      </if>
+      <if test="orderDate != null">
+        #{orderDate,jdbcType=VARCHAR},
+      </if>
+      <if test="buyerName != null">
+        #{buyerName,jdbcType=VARCHAR},
+      </if>
+      <if test="buyerAddress != null">
+        #{buyerAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="buyerContact != null">
+        #{buyerContact,jdbcType=VARCHAR},
+      </if>
+      <if test="buyerPhone != null">
+        #{buyerPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="buyerMail != null">
+        #{buyerMail,jdbcType=VARCHAR},
+      </if>
+      <if test="gmtCreate != null">
+        #{gmtCreate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="gmtUpdate != null">
+        #{gmtUpdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="yn != null">
+        #{yn,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.kone.utils.entity.Order">
+    update tb_order
+    <set>
+      <if test="orderNum != null">
+        order_num = #{orderNum,jdbcType=VARCHAR},
+      </if>
+      <if test="orderDate != null">
+        order_date = #{orderDate,jdbcType=VARCHAR},
+      </if>
+      <if test="buyerName != null">
+        buyer_name = #{buyerName,jdbcType=VARCHAR},
+      </if>
+      <if test="buyerAddress != null">
+        buyer_address = #{buyerAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="buyerContact != null">
+        buyer_contact = #{buyerContact,jdbcType=VARCHAR},
+      </if>
+      <if test="buyerPhone != null">
+        buyer_phone = #{buyerPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="buyerMail != null">
+        buyer_mail = #{buyerMail,jdbcType=VARCHAR},
+      </if>
+      <if test="gmtCreate != null">
+        gmt_create = #{gmtCreate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="gmtUpdate != null">
+        gmt_update = #{gmtUpdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="yn != null">
+        yn = #{yn,jdbcType=INTEGER},
+      </if>
+    </set>
+    where order_id = #{orderId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.kone.utils.entity.Order">
+    update tb_order
+    set order_num = #{orderNum,jdbcType=VARCHAR},
+      order_date = #{orderDate,jdbcType=VARCHAR},
+      buyer_name = #{buyerName,jdbcType=VARCHAR},
+      buyer_address = #{buyerAddress,jdbcType=VARCHAR},
+      buyer_contact = #{buyerContact,jdbcType=VARCHAR},
+      buyer_phone = #{buyerPhone,jdbcType=VARCHAR},
+      buyer_mail = #{buyerMail,jdbcType=VARCHAR},
+      gmt_create = #{gmtCreate,jdbcType=TIMESTAMP},
+      gmt_update = #{gmtUpdate,jdbcType=TIMESTAMP},
+      yn = #{yn,jdbcType=INTEGER}
+    where order_id = #{orderId,jdbcType=BIGINT}
+  </update>
+
+  <select id="selectByPager" parameterType="com.kone.utils.conditions.CommonCondition" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from tb_order
+    WHERE  yn = 0
+    ORDER BY order_id DESC
+    limit #{pager.start},#{pager.size}
+  </select>
+  <select id="countByPager" parameterType="com.kone.utils.conditions.CommonCondition" resultType="java.lang.Long">
+    SELECT COUNT(*) FROM tb_order
+    WHERE yn=0
+  </select>
+
+  <resultMap id="BaseResultMap1" type="com.kone.utils.entity.Order">
+    <id column="order_id" jdbcType="BIGINT" property="orderId" />
+    <result column="order_num" jdbcType="VARCHAR" property="orderNum" />
+    <result column="order_date" jdbcType="VARCHAR" property="orderDate" />
+    <result column="buyer_name" jdbcType="VARCHAR" property="buyerName" />
+    <result column="buyer_address" jdbcType="VARCHAR" property="buyerAddress" />
+    <result column="buyer_contact" jdbcType="VARCHAR" property="buyerContact" />
+    <result column="buyer_phone" jdbcType="VARCHAR" property="buyerPhone" />
+    <result column="buyer_mail" jdbcType="VARCHAR" property="buyerMail" />
+    <result column="gmt_create" jdbcType="TIMESTAMP" property="gmtCreate" />
+    <result column="gmt_update" jdbcType="TIMESTAMP" property="gmtUpdate" />
+    <result column="yn" jdbcType="INTEGER" property="yn" />
+
+    <collection property="products" ofType="OrderProduct" column="order_id" select="com.kone.commonsDao.dao.OrderProductMapper.selectByOrderId"/>
+  </resultMap>
+
+  <select id="selectByOrderId" parameterType="java.lang.Long" resultMap="BaseResultMap1">
+    select
+    <include refid="Base_Column_List" />
+    from tb_order
+    where order_id = #{orderId,jdbcType=BIGINT}
+  </select>
+
+</mapper>

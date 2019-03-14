@@ -1,0 +1,10 @@
+#spring:
+#  application:
+#    name: order-service
+#  cloud:
+#    config:
+#      uri: http://config-server:8769
+#      fail-fast: true
+#
+#  profiles:
+#    active: dev

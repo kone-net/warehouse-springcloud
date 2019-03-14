@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.kone.commonsDao.dao.MaterialInMapper">
+  <resultMap id="BaseResultMap" type="com.kone.utils.entity.MaterialIn">
+    <id column="material_in_id" jdbcType="BIGINT" property="materialInId" />
+    <result column="material_id" jdbcType="BIGINT" property="materialId" />
+    <result column="material_name" jdbcType="VARCHAR" property="materialName" />
+    <result column="material_in_num" jdbcType="REAL" property="materialInNum" />
+    <result column="in_unit" jdbcType="VARCHAR" property="inUnit" />
+    <result column="gmt_create" jdbcType="TIMESTAMP" property="gmtCreate" />
+    <result column="gmt_update" jdbcType="TIMESTAMP" property="gmtUpdate" />
+    <result column="yn" jdbcType="INTEGER" property="yn" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    material_in_id, material_id, material_name, material_in_num, in_unit, gmt_create, 
+    gmt_update, yn
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from tb_material_in
+    where material_in_id = #{materialInId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from tb_material_in
+    where material_in_id = #{materialInId,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.kone.utils.entity.MaterialIn">
+    insert into tb_material_in (material_in_id, material_id, material_name, 
+      material_in_num, in_unit, gmt_create, 
+      gmt_update, yn)
+    values (#{materialInId,jdbcType=BIGINT}, #{materialId,jdbcType=BIGINT}, #{materialName,jdbcType=VARCHAR}, 
+      #{materialInNum,jdbcType=REAL}, #{inUnit,jdbcType=VARCHAR}, now(), now(),0)
+  </insert>
+  <insert id="insertSelective" parameterType="com.kone.utils.entity.MaterialIn">
+    insert into tb_material_in
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="materialInId != null">
+        material_in_id,
+      </if>
+      <if test="materialId != null">
+        material_id,
+      </if>
+      <if test="materialName != null">
+        material_name,
+      </if>
+      <if test="materialInNum != null">
+        material_in_num,
+      </if>
+      <if test="inUnit != null">
+        in_unit,
+      </if>
+      <if test="gmtCreate != null">
+        gmt_create,
+      </if>
+      <if test="gmtUpdate != null">
+        gmt_update,
+      </if>
+      <if test="yn != null">
+        yn,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="materialInId != null">
+        #{materialInId,jdbcType=BIGINT},
+      </if>
+      <if test="materialId != null">
+        #{materialId,jdbcType=BIGINT},
+      </if>
+      <if test="materialName != null">
+        #{materialName,jdbcType=VARCHAR},
+      </if>
+      <if test="materialInNum != null">
+        #{materialInNum,jdbcType=REAL},
+      </if>
+      <if test="inUnit != null">
+        #{inUnit,jdbcType=VARCHAR},
+      </if>
+      <if test="gmtCreate != null">
+        #{gmtCreate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="gmtUpdate != null">
+        #{gmtUpdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="yn != null">
+        #{yn,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.kone.utils.entity.MaterialIn">
+    update tb_material_in
+    <set>
+      <if test="materialId != null">
+        material_id = #{materialId,jdbcType=BIGINT},
+      </if>
+      <if test="materialName != null">
+        material_name = #{materialName,jdbcType=VARCHAR},
+      </if>
+      <if test="materialInNum != null">
+        material_in_num = #{materialInNum,jdbcType=REAL},
+      </if>
+      <if test="inUnit != null">
+        in_unit = #{inUnit,jdbcType=VARCHAR},
+      </if>
+      <if test="gmtCreate != null">
+        gmt_create = #{gmtCreate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="gmtUpdate != null">
+        gmt_update = #{gmtUpdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="yn != null">
+        yn = #{yn,jdbcType=INTEGER},
+      </if>
+    </set>
+    where material_in_id = #{materialInId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.kone.utils.entity.MaterialIn">
+    update tb_material_in
+    set material_id = #{materialId,jdbcType=BIGINT},
+      material_name = #{materialName,jdbcType=VARCHAR},
+      material_in_num = #{materialInNum,jdbcType=REAL},
+      in_unit = #{inUnit,jdbcType=VARCHAR},
+      gmt_create = #{gmtCreate,jdbcType=TIMESTAMP},
+      gmt_update = #{gmtUpdate,jdbcType=TIMESTAMP},
+      yn = #{yn,jdbcType=INTEGER}
+    where material_in_id = #{materialInId,jdbcType=BIGINT}
+  </update>
+
+  <select id="selectByPager" parameterType="com.kone.utils.conditions.CommonCondition" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from tb_material_in
+    WHERE  yn = 0
+    AND material_id = #{id}
+    <if test="startTime != null and endTime != null">
+      AND gmt_create BETWEEN #{startTime} AND #{endTime}
+    </if>
+    limit #{pager.start},#{pager.size}
+  </select>
+  <select id="countByPager" parameterType="com.kone.utils.conditions.CommonCondition" resultType="java.lang.Long">
+    SELECT COUNT(*) FROM tb_material_in
+    WHERE yn=0
+    AND material_id = #{id}
+    <if test="startTime != null and endTime != null">
+      AND gmt_create BETWEEN #{startTime} AND #{endTime}
+    </if>
+  </select>
+
+  <select id="getSum" parameterType="com.kone.utils.conditions.CommonCondition" resultType="java.lang.Float">
+    SELECT SUM(material_in_num) FROM tb_material_in
+    WHERE yn=0
+    AND material_id = #{id}
+    <if test="startTime != null and endTime != null">
+      AND gmt_create BETWEEN #{startTime} AND #{endTime}
+    </if>
+  </select>
+</mapper>

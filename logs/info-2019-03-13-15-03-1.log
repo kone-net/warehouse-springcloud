@@ -1,0 +1,3 @@
+[2019-03-13 15:03:04:841] [INFO] - com.netflix.discovery.shared.resolver.aws.ConfigClusterResolver.getClusterEndpoints(ConfigClusterResolver.java:43) - Resolving eureka endpoints via configuration
+[2019-03-13 15:03:57:656] [INFO] - com.kone.feignuser.controller.MaterialController.viewMaterialIn(MaterialController.java:82) - material id is 4
+[2019-03-13 15:03:59:861] [INFO] - com.kone.feignuser.controller.MaterialController.viewMaterialIn(MaterialController.java:82) - material id is 4
