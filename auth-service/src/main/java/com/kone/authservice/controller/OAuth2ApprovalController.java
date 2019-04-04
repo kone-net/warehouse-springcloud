@@ -12,8 +12,15 @@ import java.util.Map;
 @Controller
 @SessionAttributes("authorizationRequest")
 public class OAuth2ApprovalController {
-    @RequestMapping("/auth/login")
+    @RequestMapping("/oauth/login")
     public String login(Map<String, Object> model, HttpServletRequest request)
+            throws Exception {
+
+        return "oauth/login";
+    }
+
+    @RequestMapping("/login2")
+    public String login2(Map<String, Object> model, HttpServletRequest request)
             throws Exception {
 
         return "oauth/login";

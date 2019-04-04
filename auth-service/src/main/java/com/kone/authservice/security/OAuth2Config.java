@@ -33,7 +33,7 @@ public class OAuth2Config extends AuthorizationServerConfigurerAdapter {
                 .withClient("client")
                 .secret("client")
                 ////配置类验证类型为 refresh_token和password
-                .authorizedGrantTypes("refresh_token", "password", "authorization_code")
+                .authorizedGrantTypes("implicit", "refresh_token", "password", "authorization_code")
                 .scopes("service")
 //                .and()//不同的客户端链接
 //                .withClient("webapp")

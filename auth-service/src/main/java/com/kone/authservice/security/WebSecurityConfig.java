@@ -58,52 +58,44 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-//        http.requestMatchers()
-//                .anyRequest()
-//                .and()
+//        http.csrf().disable();
+//        http.antMatcher("/oauth/**")
 //                .authorizeRequests()
-//                .antMatchers("/oauth/**").permitAll();
+//                .antMatchers("/oauth/login").permitAll()
+//                .antMatchers("/oauth/token").permitAll()
+//                .antMatchers("/oauth/check_token").permitAll()
+//                .antMatchers("/oauth/confirm_access").permitAll()
+//                .antMatchers("/user/login").permitAll()
+//                .antMatchers("/oauth/approvale/confirm").permitAll()
+//                .antMatchers("/oauth/approvale/error").permitAll()
+//                .anyRequest().authenticated()
+//                .and()
+//                .formLogin()
+//                .loginPage("/user/login")
+//                .loginProcessingUrl("/oauth/confirm_access");
 
-//        http    // 配置登陆页/login并允许访问
-//                .formLogin().permitAll()
-//                // 登出页
-//                .and().logout().logoutUrl("/logout").logoutSuccessUrl("/")
-//                // 其余所有请求全部需要鉴权认证
-//                .and().authorizeRequests().anyRequest().authenticated()
-//                // 由于使用的是JWT，我们这里不需要csrf
-//                .and().csrf().disable();
-        http
-                .csrf().disable() //关闭CSRF
-                .exceptionHandling()
-                .authenticationEntryPoint((request, response, authException) -> response.sendError(HttpServletResponse.SC_UNAUTHORIZED))
-                .and()
-                .authorizeRequests()
-                .antMatchers("/**").authenticated()
-                .and()
-                .httpBasic();
+        http    // 配置登陆页/login并允许访问
+                .formLogin().permitAll()
+                // 登出页
+                .and().logout().logoutUrl("/logout").logoutSuccessUrl("/")
+                // 其余所有请求全部需要鉴权认证
+                .and().authorizeRequests().anyRequest().authenticated()
+                // 由于使用的是JWT，我们这里不需要csrf
+                .and().csrf().disable();
 
 //        http
-//                // 必须配置，不然OAuth2的http配置不生效----不明觉厉
-//                .requestMatchers()
-//                .antMatchers("/auth/login","/auth/authorize", "/oauth/authorize")
+//                .csrf().disable() //关闭CSRF
+//                .exceptionHandling()
+//                .authenticationEntryPoint((request, response, authException) -> response.sendError(HttpServletResponse.SC_UNAUTHORIZED))
 //                .and()
 //                .authorizeRequests()
-//                // 自定义页面或处理url是，如果不配置全局允许，浏览器会提示服务器将页面转发多次
-//                .antMatchers("/auth/*")
-//                .permitAll()
-//                .anyRequest()
-//                .authenticated();
-//
-//        // 表单登录
-//        http.formLogin()
-//                // 登录页面
-//                .loginPage("/auth/login")
-//                // 登录处理url
-//                .loginProcessingUrl("/auth/authorize");
-//
-//        http.httpBasic().disable();
+//                .antMatchers("/**").authenticated()
+//                .and()
+//                .httpBasic();
+
 
     }
+
 
     @Override
     public void configure(WebSecurity web) throws Exception {
@@ -111,6 +103,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 ("/swagger-ui.html/**", "/webjars/**",
                         "/swagger-resources/**", "/v2/api-docs/**",
                         "/swagger-resources/configuration/ui/**", "/swagger-resources/configuration/security/**",
-                        "/images/**");
+                        "/images/**","/**/*.html");
     }
 }
