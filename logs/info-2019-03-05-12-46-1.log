@@ -1,1 +1,0 @@
-[2019-03-05 12:46:17:963] [INFO] - com.netflix.discovery.shared.resolver.aws.ConfigClusterResolver.getClusterEndpoints(ConfigClusterResolver.java:43) - Resolving eureka endpoints via configuration

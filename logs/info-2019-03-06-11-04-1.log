@@ -1,1 +1,0 @@
-[2019-03-06 11:04:58:835] [INFO] - org.springframework.cloud.config.client.ConfigServicePropertySourceLocator.getRemoteEnvironment(ConfigServicePropertySourceLocator.java:205) - Fetching config from server at : http://localhost:8888

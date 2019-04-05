@@ -1,3 +1,0 @@
-[2019-03-14 10:03:39:738] [INFO] - com.kone.feignuser.controller.ProductController.viewProductIn(ProductController.java:189) - product id is 1
-[2019-03-14 10:03:45:581] [INFO] - com.kone.feignuser.controller.ProductController.viewProductMaterialNumByProductId(ProductController.java:68) - 2
-[2019-03-14 10:03:52:271] [INFO] - com.kone.feignuser.controller.MaterialController.viewMaterialIn(MaterialController.java:82) - material id is 11

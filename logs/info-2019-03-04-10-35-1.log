@@ -1,3 +1,0 @@
-[2019-03-04 10:35:06:573] [INFO] - com.kone.feignuser.controller.FeignUserController.login(FeignUserController.java:29) - user kone is login!
-[2019-03-04 10:35:06:591] [INFO] - com.kone.feignuser.controller.FeignUserController.login(FeignUserController.java:31) - success
-[2019-03-04 10:35:43:364] [INFO] - com.netflix.discovery.shared.resolver.aws.ConfigClusterResolver.getClusterEndpoints(ConfigClusterResolver.java:43) - Resolving eureka endpoints via configuration

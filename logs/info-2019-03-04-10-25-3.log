@@ -1,9 +1,0 @@
-[2019-03-13 21:21:37:161] [INFO] - org.springframework.cloud.netflix.eureka.serviceregistry.EurekaServiceRegistry.deregister(EurekaServiceRegistry.java:65) - Unregistering application FEIGN-USER with eureka with status DOWN
-[2019-03-13 21:21:37:172] [WARN] - com.netflix.discovery.DiscoveryClient$3.notify(DiscoveryClient.java:1303) - Saw local status change event StatusChangeEvent [timestamp=1552483297172, current=DOWN, previous=UP]
-[2019-03-13 21:21:37:173] [INFO] - com.netflix.discovery.DiscoveryClient.register(DiscoveryClient.java:826) - DiscoveryClient_FEIGN-USER/LAPTOP-VSBV5SCV:feign-user:8765: registering service...
-[2019-03-13 21:21:37:190] [INFO] - org.springframework.scheduling.concurrent.ExecutorConfigurationSupport.shutdown(ExecutorConfigurationSupport.java:208) - Shutting down ExecutorService 'applicationTaskExecutor'
-[2019-03-13 21:21:37:198] [INFO] - com.netflix.discovery.DiscoveryClient.shutdown(DiscoveryClient.java:888) - Shutting down DiscoveryClient ...
-[2019-03-13 21:21:37:214] [INFO] - com.netflix.discovery.DiscoveryClient.register(DiscoveryClient.java:835) - DiscoveryClient_FEIGN-USER/LAPTOP-VSBV5SCV:feign-user:8765 - registration status: 204
-[2019-03-13 21:21:37:214] [INFO] - com.netflix.discovery.DiscoveryClient.unregister(DiscoveryClient.java:922) - Unregistering ...
-[2019-03-13 21:21:37:221] [INFO] - com.netflix.discovery.DiscoveryClient.unregister(DiscoveryClient.java:924) - DiscoveryClient_FEIGN-USER/LAPTOP-VSBV5SCV:feign-user:8765 - deregister  status: 200
-[2019-03-13 21:21:37:229] [INFO] - com.netflix.discovery.DiscoveryClient.shutdown(DiscoveryClient.java:911) - Completed shut down of DiscoveryClient

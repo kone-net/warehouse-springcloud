@@ -1,2 +1,0 @@
-2019-03-03 02:22:47.519 ERROR 15548 --- [reactor-http-nio-1] o.s.w.s.adapter.HttpWebHandlerAdapter    : [8c57c08b] Error [java.io.IOException: 你的主机中的软件中止了一个已建立的连接。] for HTTP GET "/applications", but ServerHttpResponse already committed (200 OK)
-2019-03-03 11:12:29.263 ERROR 15548 --- [reactor-http-nio-3] o.s.w.s.adapter.HttpWebHandlerAdapter    : [947015bf] Error [java.io.IOException: 你的主机中的软件中止了一个已建立的连接。] for HTTP GET "/applications", but ServerHttpResponse already committed (200 OK)

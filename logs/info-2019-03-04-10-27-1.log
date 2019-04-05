@@ -1,6 +1,0 @@
-[2019-03-04 10:27:43:520] [INFO] - com.kone.feignuser.controller.FeignUserController.login(FeignUserController.java:29) - user null is login!
-[2019-03-04 10:27:43:653] [INFO] - com.kone.feignuser.controller.FeignUserController.login(FeignUserController.java:31) - 用户名错误
-[2019-03-04 10:27:48:563] [INFO] - com.kone.feignuser.controller.FeignUserController.login(FeignUserController.java:29) - user kone is login!
-[2019-03-04 10:27:48:586] [INFO] - com.kone.feignuser.controller.FeignUserController.login(FeignUserController.java:31) - success
-[2019-03-04 10:27:51:289] [INFO] - com.kone.feignuser.controller.FeignUserController.login(FeignUserController.java:29) - user kone is login!
-[2019-03-04 10:27:51:308] [INFO] - com.kone.feignuser.controller.FeignUserController.login(FeignUserController.java:31) - success

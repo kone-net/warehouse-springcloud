@@ -1,8 +1,0 @@
-[2019-03-04 17:50:05:876] [INFO] - com.kone.feignuser.controller.MaterialController.viewMaterial(MaterialController.java:31) - ??1
-[2019-03-04 17:50:05:885] [INFO] - com.kone.feignuser.controller.MaterialController.viewMaterial(MaterialController.java:31) - ??1
-[2019-03-04 17:50:05:885] [INFO] - com.kone.feignuser.controller.MaterialController.viewMaterial(MaterialController.java:31) - ??2
-[2019-03-04 17:50:05:885] [INFO] - com.kone.feignuser.controller.MaterialController.viewMaterial(MaterialController.java:31) - material1
-[2019-03-04 17:50:22:354] [INFO] - com.kone.feignuser.controller.MaterialController.viewMaterial(MaterialController.java:31) - ??1
-[2019-03-04 17:50:22:356] [INFO] - com.kone.feignuser.controller.MaterialController.viewMaterial(MaterialController.java:31) - ??1
-[2019-03-04 17:50:22:357] [INFO] - com.kone.feignuser.controller.MaterialController.viewMaterial(MaterialController.java:31) - ??2
-[2019-03-04 17:50:22:358] [INFO] - com.kone.feignuser.controller.MaterialController.viewMaterial(MaterialController.java:31) - material1

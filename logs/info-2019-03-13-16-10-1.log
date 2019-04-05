@@ -1,4 +1,0 @@
-[2019-03-13 16:10:11:738] [INFO] - com.netflix.discovery.shared.resolver.aws.ConfigClusterResolver.getClusterEndpoints(ConfigClusterResolver.java:43) - Resolving eureka endpoints via configuration
-[2019-03-13 16:10:54:125] [INFO] - com.kone.feignuser.controller.FeignUserController.login(FeignUserController.java:29) - user kone is login!
-[2019-03-13 16:10:54:247] [INFO] - com.kone.feignuser.controller.FeignUserController.login(FeignUserController.java:35) - not nullkone
-[2019-03-13 16:10:54:247] [INFO] - com.kone.feignuser.controller.FeignUserController.login(FeignUserController.java:37) - success
