@@ -141,6 +141,14 @@
                     <fork>true</fork>
                 </configuration>
             </plugin>
+
+            <plugin>
+                <artifactId>maven-javadoc-plugin</artifactId>
+                <configuration>
+                    <docfilessubdirs>true</docfilessubdirs>
+                </configuration>
+            </plugin>
+
         </plugins>
     </build>
 
