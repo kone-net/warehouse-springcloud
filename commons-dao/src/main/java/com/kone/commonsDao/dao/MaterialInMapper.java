@@ -1,5 +1,6 @@
 package com.kone.commonsDao.dao;
 
+import com.kone.utils.bo.MaterialInByDayBO;
 import com.kone.utils.conditions.CommonCondition;
 import com.kone.utils.entity.MaterialIn;
 
@@ -23,4 +24,12 @@ public interface MaterialInMapper {
     List<MaterialIn> selectByPager(CommonCondition condition);
 
     Float getSum(CommonCondition condition);
+
+    /**
+     * 通过时间段查看材料的入库情况
+     *   显示该时间段，该材料总共使用的数量
+     * @param condition
+     * @return
+     */
+    List<MaterialInByDayBO> viewMaterialInByDay(CommonCondition condition);
 }

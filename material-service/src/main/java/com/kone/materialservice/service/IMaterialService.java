@@ -1,5 +1,6 @@
 package com.kone.materialservice.service;
 
+import com.kone.utils.bo.MaterialInByDayBO;
 import com.kone.utils.conditions.CommonCondition;
 import com.kone.utils.entity.Material;
 import com.kone.utils.entity.MaterialIn;
@@ -36,4 +37,13 @@ public interface IMaterialService {
      * @return
      */
     ResponseMsg deleteMaterial(Long materialId);
+
+
+    /**
+     * 通过时间段查看材料的入库情况
+     *   显示该时间段，该材料总共使用的数量
+     * @param condition
+     * @return
+     */
+    ResponseMsg<List<MaterialInByDayBO>> viewMaterialInByDay(CommonCondition condition);
 }

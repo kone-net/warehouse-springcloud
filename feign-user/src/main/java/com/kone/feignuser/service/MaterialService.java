@@ -1,6 +1,7 @@
 package com.kone.feignuser.service;
 
 import com.kone.feignuser.FeignConfig.FeignConfig;
+import com.kone.utils.bo.MaterialInByDayBO;
 import com.kone.utils.conditions.CommonCondition;
 import com.kone.utils.entity.Material;
 import com.kone.utils.entity.MaterialDetails;
@@ -62,4 +63,15 @@ public interface MaterialService {
     @RequestMapping(value = "/materialService/deleteMaterial", consumes = "application/json")
     @ResponseBody
     ResponseMsg deleteMaterial(@RequestParam("materialId") Long materialId);
+
+
+    /**
+     * 通过时间段查看材料的入库情况
+     *   显示该时间段，该材料总共使用的数量
+     * @param condition
+     * @return
+     */
+    @RequestMapping(value = "/materialService/viewMaterialInByDay", consumes = "application/json")
+    @ResponseBody
+    ResponseMsg<List<MaterialInByDayBO>> viewMaterialInByDay(@RequestBody CommonCondition condition);
 }

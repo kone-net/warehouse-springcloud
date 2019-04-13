@@ -2,6 +2,7 @@ package com.kone.materialservice.service.impl;
 
 import com.kone.commonsDao.dao.MaterialInMapper;
 import com.kone.materialservice.service.IMaterialService;
+import com.kone.utils.bo.MaterialInByDayBO;
 import com.kone.utils.conditions.CommonCondition;
 import com.kone.utils.entity.Material;
 import com.kone.utils.entity.MaterialIn;
@@ -167,6 +168,26 @@ public class MaterialService implements IMaterialService {
             msg.setCode(MsgEnum.NEED_INPUT_FIELD_ERROR.getCode());
             return msg;
         }
+        return msg;
+    }
+
+    @Override
+    @RequestMapping("/viewMaterialInByDay")
+    public ResponseMsg<List<MaterialInByDayBO>> viewMaterialInByDay(@RequestBody CommonCondition condition) {
+        logger.info("viewMaterialInByDay");
+        logger.info(condition.getStartTime());
+        ResponseMsg<List<MaterialInByDayBO>> msg = new ResponseMsg<>();
+
+        Pager pager = condition.getPager();
+        Long total = 10L;
+        pager.setTotal(total);
+        pager = PagerUtils.getPager(pager);
+
+
+        List<MaterialInByDayBO> materials = materialInMapper.viewMaterialInByDay(condition);
+
+        msg.setPager(pager);
+        msg.setData(materials);
         return msg;
     }
 

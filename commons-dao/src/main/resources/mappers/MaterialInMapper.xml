@@ -154,4 +154,27 @@
       AND gmt_create BETWEEN #{startTime} AND #{endTime}
     </if>
   </select>
+
+
+  <resultMap id="MaterialInByDayResultMap" type="com.kone.utils.bo.MaterialInByDayBO">
+    <result column="material_id" jdbcType="BIGINT" property="materialId" />
+    <result column="materialNumSum" jdbcType="REAL" property="materialNumSum" />
+
+    <association property="material" column="material_id" select="com.kone.commonsDao.dao.MaterialMapper.selectByPrimaryKey"></association>
+  </resultMap>
+  <sql id="Material_In_By_Day_Column_List">
+    material_id, SUM(material_in_num) AS materialNumSum
+  </sql>
+
+  <select id="viewMaterialInByDay" parameterType="com.kone.utils.conditions.CommonCondition" resultMap="MaterialInByDayResultMap">
+    select
+    <include refid="Material_In_By_Day_Column_List" />
+    from tb_material_in
+    WHERE  yn = 0
+    <if test="startTime != null and endTime != null">
+      AND gmt_create BETWEEN #{startTime} AND #{endTime}
+    </if>
+    GROUP BY material_id
+    limit #{pager.start},#{pager.size}
+  </select>
 </mapper>
