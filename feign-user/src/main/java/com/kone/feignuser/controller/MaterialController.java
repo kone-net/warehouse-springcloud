@@ -28,10 +28,12 @@ public class MaterialController {
     private Logger logger = LogManager.getLogger(this.getClass());
 
     @GetMapping("/viewMaterial")
-    public String viewMaterial(Pager pager, Model model) {
-        ResponseMsg<List<Material>> msg = materialService.viewMaterial(pager);
+    public String viewMaterial(CommonCondition condition, Model model) {
+        ResponseMsg<List<Material>> msg = materialService.viewMaterial(condition);
 
+        logger.info("name :" + condition.getName());
         model.addAttribute("data", msg);
+        model.addAttribute("condition", condition);
         return "material/viewMaterial";
     }
 

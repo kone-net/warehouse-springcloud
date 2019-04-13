@@ -10,7 +10,7 @@ import java.util.List;
 
 public interface IMaterialService {
 
-    ResponseMsg<List<Material>> viewMaterial(Pager pager);
+    ResponseMsg<List<Material>> viewMaterial(CommonCondition condition);
 
     ResponseMsg saveMaterial(Material material);
 

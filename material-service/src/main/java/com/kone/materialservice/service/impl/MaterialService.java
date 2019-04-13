@@ -36,18 +36,20 @@ public class MaterialService implements IMaterialService {
 
     @Override
     @RequestMapping("/viewMaterial")
-    public ResponseMsg<List<Material>> viewMaterial(@RequestBody Pager pager) {
+    public ResponseMsg<List<Material>> viewMaterial(@RequestBody CommonCondition condition) {
         logger.info("view material");
+        logger.info("material name : " + condition.getName());
         ResponseMsg<List<Material>> msg = new ResponseMsg<List<Material>>();
 
-        Long total = materialMapper.countByPager(new CommonCondition());
+        Pager pager = condition.getPager();
+
+        Long total = materialMapper.countByPager(condition);
         pager.setTotal(total);
         pager = PagerUtils.getPager(pager);
 
-        pager.setStart((pager.getNum() * pager.getSize()));
-        List<Material> materials = materialMapper.selectByPager(pager);
+        condition.setPager(pager);
+        List<Material> materials = materialMapper.selectByPager(condition);
         msg.setData(materials);
-
 
         msg.setPager(pager);
         return msg;
@@ -167,4 +169,6 @@ public class MaterialService implements IMaterialService {
         }
         return msg;
     }
+
+
 }

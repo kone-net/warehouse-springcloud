@@ -15,6 +15,8 @@ public class PagerUtils {
         if(pager.getNum() >= pager.getPage()) {
             pager.setNum(pager.getPage());
         }
+
+        pager.setStart((pager.getNum() * pager.getSize()));
         return pager;
     }
 }

@@ -9,6 +9,8 @@ public class CommonCondition {
 
     private String endTime;
 
+    private String name;
+
     private Pager pager = new Pager();
 
     public Long getId() {
@@ -41,5 +43,13 @@ public class CommonCondition {
 
     public void setEndTime(String endTime) {
         this.endTime = endTime;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 }

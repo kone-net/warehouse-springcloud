@@ -25,7 +25,7 @@ public interface MaterialService {
 
     @RequestMapping(value = "/materialService/viewMaterial", consumes = "application/json")
     @ResponseBody
-    ResponseMsg<List<Material>> viewMaterial(@RequestBody Pager pager);
+    ResponseMsg<List<Material>> viewMaterial(@RequestBody CommonCondition condition);
 
     @RequestMapping(value = "/materialService/viewAllMaterial", consumes = "application/json")
     @ResponseBody

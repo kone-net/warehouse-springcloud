@@ -25,5 +25,5 @@ public interface MaterialMapper {
 
     Long countByPager(CommonCondition condition);
 
-    List<Material> selectByPager(Pager pager);
+    List<Material> selectByPager(CommonCondition commonCondition);
 }
