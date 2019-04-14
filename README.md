@@ -38,13 +38,16 @@ The feign-user is a web site.Using the feign to call other part of system.And ge
 
 -----
 git operation:
-git checkout -b dev
+1.git checkout -b dev
 -b mean create and switch the branch.
 
 It also can use:
 git branch dev
 git checkout dev
 
-show current branch:
+2.show current branch:
 git branch
+
+3.switch the branch
+git checkout master
 -----
