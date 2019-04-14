@@ -77,8 +77,15 @@
                 num = num + 1;
             }
             var startTime = [[${condition.startTime}]];
-            var endTime = [[${condition.endTime}]];;
-            window.location.href='/material/viewMaterialInByDay?pager.size=10&pager.num=' + num +'&startTime='+startTime+'&endTime='+endTime;
+            var endTime = [[${condition.endTime}]];
+            if (null == startTime || "null" == startTime) {
+                startTime = '';
+            }
+            if (null == endTime || "null" == endTime) {
+                endTime = '';
+            }
+            console.log(num);
+            window.location.href='/material/viewMaterialInByDay?pager.size=10&pager.num='+ num+'&startTime='+startTime+'&endTime='+endTime;
         }
     </script>
    

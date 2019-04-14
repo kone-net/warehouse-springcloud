@@ -32,4 +32,11 @@ public interface MaterialInMapper {
      * @return
      */
     List<MaterialInByDayBO> viewMaterialInByDay(CommonCondition condition);
+
+    /**
+     * 通过时间段查看材料的入库情况 总条数
+     * @param condition
+     * @return
+     */
+    Long getMaterialInByDaySum(CommonCondition condition);
 }

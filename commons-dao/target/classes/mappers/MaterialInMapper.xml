@@ -132,7 +132,7 @@
     from tb_material_in
     WHERE  yn = 0
     AND material_id = #{id}
-    <if test="startTime != null and endTime != null">
+    <if test="startTime != null and startTime !='' and endTime != null and endTime != ''">
       AND gmt_create BETWEEN #{startTime} AND #{endTime}
     </if>
     limit #{pager.start},#{pager.size}
@@ -141,7 +141,7 @@
     SELECT COUNT(*) FROM tb_material_in
     WHERE yn=0
     AND material_id = #{id}
-    <if test="startTime != null and endTime != null">
+    <if test="startTime != null and startTime !='' and endTime != null and endTime != ''">
       AND gmt_create BETWEEN #{startTime} AND #{endTime}
     </if>
   </select>
@@ -150,8 +150,46 @@
     SELECT SUM(material_in_num) FROM tb_material_in
     WHERE yn=0
     AND material_id = #{id}
-    <if test="startTime != null and endTime != null">
+    <if test="startTime != null and startTime !='' and endTime != null and endTime != ''">
       AND gmt_create BETWEEN #{startTime} AND #{endTime}
     </if>
+  </select>
+
+
+  <resultMap id="MaterialInByDayResultMap" type="com.kone.utils.bo.MaterialInByDayBO">
+    <result column="material_id" jdbcType="BIGINT" property="materialId" />
+    <result column="materialNumSum" jdbcType="REAL" property="materialNumSum" />
+
+    <association property="material" column="material_id" select="com.kone.commonsDao.dao.MaterialMapper.selectByPrimaryKey"></association>
+  </resultMap>
+  <sql id="Material_In_By_Day_Column_List">
+    material_id, SUM(material_in_num) AS materialNumSum
+  </sql>
+
+  <select id="viewMaterialInByDay" parameterType="com.kone.utils.conditions.CommonCondition" resultMap="MaterialInByDayResultMap">
+    select
+    <include refid="Material_In_By_Day_Column_List" />
+    from tb_material_in
+    WHERE  yn = 0
+    <if test="startTime != null and startTime !='' and endTime != null and endTime != ''">
+      AND gmt_create BETWEEN #{startTime} AND #{endTime}
+    </if>
+    GROUP BY material_id
+    limit #{pager.start},#{pager.size}
+  </select>
+
+  <select id="getMaterialInByDaySum" parameterType="com.kone.utils.conditions.CommonCondition" resultType="java.lang.Long">
+    SELECT COUNT(1) FROM
+    (
+    select
+    <include refid="Material_In_By_Day_Column_List" />
+    from tb_material_in
+    WHERE  yn = 0
+    <if test="startTime != null and startTime !='' and endTime != null and endTime != ''">
+      AND gmt_create BETWEEN #{startTime} AND #{endTime}
+    </if>
+    GROUP BY material_id
+    )
+    AS c
   </select>
 </mapper>

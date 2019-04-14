@@ -250,9 +250,19 @@ hcvv
                         <!--<a class="active-menu" href="/material/viewMaterial?num=0&size=10" target="frame"><i class="fa fa-dashboard"></i> 原材料</a>-->
                         <a href="/material/viewMaterial?num=0&size=10" target="frame"><i class="fa fa-dashboard"></i> 原材料</a>
                     </li>
+
                     <li>
-                        <a href="/material/viewMaterialInByDay?pager.num=0&pager.size=10" target="frame"><i class="fa fa-desktop"></i> 材料入库统计</a>
+                        <a href="#"><i class="fa fa-sitemap"></i> 材料统计<span class="fa arrow"></span></a>
+                        <ul class="nav nav-second-level">
+                            <li>
+                                <a href="/material/viewMaterialInByDay?pager.num=0&pager.size=10" target="frame"><i class="fa fa-bar-chart-o"></i> 材料入库统计</a>
+                            </li>
+                            <li>
+                                <a href="/material/viewMaterialInByDay?pager.num=0&pager.size=10" target="frame"><i class="fa fa-bar-chart-o"></i> 材料出库统计</a>
+                            </li>
+                        </ul>
                     </li>
+
                     <li>
                         <a href="/product/viewProduct?num=0&size=10" target="frame"><i class="fa fa-desktop"></i> 产品管理</a>
                     </li>
@@ -346,6 +356,12 @@ hcvv
 	
     <!-- Custom Js -->
     <script src="/assets/js/custom-scripts.js"></script>
+
+    <script>
+        $("li").click(function() {
+            this.css("backgroundColor","rebeccapurple")
+        })
+    </script>
 
 
 </body>

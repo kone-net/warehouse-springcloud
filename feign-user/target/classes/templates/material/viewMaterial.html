@@ -21,9 +21,24 @@
         </div>
         <div class="panel-body">
             <div class="col-md-6">
-                <br>
+                <!--<br>-->
                 <button class="btn btn-success" data-toggle="modal" data-target="#myModal">添加原材料</button>
-                <br>
+                <!--<br>-->
+            </div>
+
+            <div class="col-md-6">
+                <form action="/material/viewMaterial?pager.num=0&pager.size=10">
+                    <div class="col-md-6">
+                        <div class="input-group">
+                            <span class="input-group-addon">材料名称</span>
+                            <input type="text" name="name" th:value="${condition.name}" class="form-control" placeholder="名称">
+                        </div>
+                    </div>
+
+                    <div class="col-md-3">
+                        <button class="btn btn-success" type="submit">搜索</button>
+                    </div>
+                </form>
             </div>
         </div>
 
@@ -93,8 +108,8 @@
                             <span class="input-group-addon">材料单位</span>
                             <select name="materialUnit" id="materialUnit" class="form-control">
                                 <option value="kg">kg</option>
-                                <option value="g">g</option>
-                                <option value="吨">吨</option>
+                                <!--<option value="g">g</option>-->
+                                <!--<option value="吨">吨</option>-->
                             </select>
                         </div>
                         <br>
@@ -140,7 +155,7 @@
 
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
-    <script>
+    <script th:inline="javascript">
         $("#save").click(function() {
             var form = new FormData(document.getElementById("form"));
             $.ajax({
@@ -174,12 +189,16 @@
         }
 
         function pager(num, type) {
+            var name = [[${condition.name}]];
+            if(name == null) {
+                name = "";
+            }
             if(0 == type) {
                 num = num - 1;
             } else {
                 num = num + 1;
             }
-            window.location.href='/material/viewMaterial?size=10&num=' + num;
+            window.location.href='/material/viewMaterial?pager.size=10&pager.num=' + num + '&name=' + name;
         }
 
         function materialIn(id) {

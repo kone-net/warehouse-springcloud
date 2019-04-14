@@ -126,17 +126,23 @@
 
   </select>
 
-  <select id="selectByPager" parameterType="com.kone.utils.pager.Pager" resultMap="BaseResultMap">
+  <select id="selectByPager" parameterType="com.kone.utils.conditions.CommonCondition" resultMap="BaseResultMap">
     select
     <include refid="Base_Column_List" />
     from tb_material
     WHERE  yn = 0
+    <if test="name != null and '' != name">
+      AND material_name LIKE '${name}%'
+    </if>
     ORDER BY material_num ASC
-    limit #{start},#{size}
+    limit #{pager.start},#{pager.size}
   </select>
   <select id="countByPager" parameterType="com.kone.utils.conditions.CommonCondition" resultType="java.lang.Long">
     SELECT COUNT(*) FROM tb_material
     WHERE yn=0
+      <if test="name != null and '' != name">
+          AND material_name LIKE '${name}%'
+      </if>
   </select>
 
   <select id="selectByMaterialName" parameterType="java.lang.String" resultMap="BaseResultMap">

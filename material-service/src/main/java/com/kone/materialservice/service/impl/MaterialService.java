@@ -175,14 +175,13 @@ public class MaterialService implements IMaterialService {
     @RequestMapping("/viewMaterialInByDay")
     public ResponseMsg<List<MaterialInByDayBO>> viewMaterialInByDay(@RequestBody CommonCondition condition) {
         logger.info("viewMaterialInByDay");
-        logger.info(condition.getStartTime());
         ResponseMsg<List<MaterialInByDayBO>> msg = new ResponseMsg<>();
 
         Pager pager = condition.getPager();
-        Long total = 10L;
+        Long total = materialInMapper.getMaterialInByDaySum(condition);
         pager.setTotal(total);
         pager = PagerUtils.getPager(pager);
-
+        condition.setPager(pager);
 
         List<MaterialInByDayBO> materials = materialInMapper.viewMaterialInByDay(condition);
 
