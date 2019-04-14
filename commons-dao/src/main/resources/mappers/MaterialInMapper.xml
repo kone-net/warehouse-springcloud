@@ -133,7 +133,7 @@
     WHERE  yn = 0
     AND material_id = #{id}
     <if test="startTime != null and startTime !='' and endTime != null and endTime != ''">
-      AND gmt_create BETWEEN #{startTime} AND #{endTime}
+      AND DATE_FORMAT(gmt_create,'%Y-%m-%d') BETWEEN #{startTime} AND #{endTime}
     </if>
     limit #{pager.start},#{pager.size}
   </select>
@@ -142,7 +142,7 @@
     WHERE yn=0
     AND material_id = #{id}
     <if test="startTime != null and startTime !='' and endTime != null and endTime != ''">
-      AND gmt_create BETWEEN #{startTime} AND #{endTime}
+      AND DATE_FORMAT(gmt_create,'%Y-%m-%d') BETWEEN #{startTime} AND #{endTime}
     </if>
   </select>
 
@@ -151,12 +151,12 @@
     WHERE yn=0
     AND material_id = #{id}
     <if test="startTime != null and startTime !='' and endTime != null and endTime != ''">
-      AND gmt_create BETWEEN #{startTime} AND #{endTime}
+      AND DATE_FORMAT(gmt_create,'%Y-%m-%d') BETWEEN #{startTime} AND #{endTime}
     </if>
   </select>
 
 
-  <resultMap id="MaterialInByDayResultMap" type="com.kone.utils.bo.MaterialInByDayBO">
+  <resultMap id="MaterialInByDayResultMap" type="com.kone.utils.bo.MaterialByDayBO">
     <result column="material_id" jdbcType="BIGINT" property="materialId" />
     <result column="materialNumSum" jdbcType="REAL" property="materialNumSum" />
 
@@ -172,7 +172,7 @@
     from tb_material_in
     WHERE  yn = 0
     <if test="startTime != null and startTime !='' and endTime != null and endTime != ''">
-      AND gmt_create BETWEEN #{startTime} AND #{endTime}
+      AND DATE_FORMAT(gmt_create,'%Y-%m-%d') BETWEEN #{startTime} AND #{endTime}
     </if>
     GROUP BY material_id
     limit #{pager.start},#{pager.size}
@@ -186,7 +186,7 @@
     from tb_material_in
     WHERE  yn = 0
     <if test="startTime != null and startTime !='' and endTime != null and endTime != ''">
-      AND gmt_create BETWEEN #{startTime} AND #{endTime}
+      AND DATE_FORMAT(gmt_create,'%Y-%m-%d') BETWEEN #{startTime} AND #{endTime}
     </if>
     GROUP BY material_id
     )

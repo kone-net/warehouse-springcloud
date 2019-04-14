@@ -101,7 +101,7 @@
     WHERE  yn = 0
     AND product_id = #{id}
     <if test="startTime != null and endTime != null">
-      AND gmt_create BETWEEN #{startTime} AND #{endTime}
+      AND DATE_FORMAT(gmt_create,'%Y-%m-%d') BETWEEN #{startTime} AND #{endTime}
     </if>
     limit #{pager.start},#{pager.size}
   </select>
@@ -110,7 +110,7 @@
     WHERE yn=0
     AND product_id = #{id}
     <if test="startTime != null and endTime != null">
-      AND gmt_create BETWEEN #{startTime} AND #{endTime}
+      AND DATE_FORMAT(gmt_create,'%Y-%m-%d') BETWEEN #{startTime} AND #{endTime}
     </if>
   </select>
 
@@ -119,7 +119,7 @@
     WHERE yn=0
     AND product_id = #{id}
     <if test="startTime != null and endTime != null">
-      AND gmt_create BETWEEN #{startTime} AND #{endTime}
+      AND DATE_FORMAT(gmt_create,'%Y-%m-%d') BETWEEN #{startTime} AND #{endTime}
     </if>
   </select>
 </mapper>
