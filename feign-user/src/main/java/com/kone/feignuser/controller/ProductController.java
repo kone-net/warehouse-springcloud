@@ -114,7 +114,7 @@ public class ProductController {
 
 
     /**
-     * 通过时间段查看材料的出库情况
+     * 通过时间段查看材料的入库情况
      *   显示该时间段，该材料总共使用的数量
      * @param condition
      * @return
@@ -125,6 +125,20 @@ public class ProductController {
         model.addAttribute("data", data);
         model.addAttribute("condition", condition);
         return "product/viewProductInByDay";
+    }
+
+    /**
+     * 通过时间段查看材料的出库情况
+     *   显示该时间段，该材料总共使用的数量
+     * @param condition
+     * @return
+     */
+    @GetMapping("/viewProductOutByDay")
+    public String viewProductOutByDay(Model model, CommonCondition condition) {
+        ResponseMsg<List<ProductByDayBO>> data = productService.viewProductOutByDay(condition);
+        model.addAttribute("data", data);
+        model.addAttribute("condition", condition);
+        return "product/viewProductOutByDay";
     }
 
 //    product series name

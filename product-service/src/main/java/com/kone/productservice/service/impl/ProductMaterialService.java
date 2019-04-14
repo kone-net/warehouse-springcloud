@@ -1,5 +1,6 @@
 package com.kone.productservice.service.impl;
 
+import com.kone.commonsDao.dao.OrderProductMapper;
 import com.kone.productservice.service.IProductMaterialService;
 import com.kone.utils.bo.ProductByDayBO;
 import com.kone.utils.conditions.CommonCondition;
@@ -40,6 +41,9 @@ public class ProductMaterialService implements IProductMaterialService {
 
     @Resource
     private com.kone.commonsDao.dao.MaterialDetailsMapper materialDetailsMapper;
+
+    @Resource
+    private OrderProductMapper orderProductMapper;
 
     @Override
     @Transactional
@@ -133,6 +137,24 @@ public class ProductMaterialService implements IProductMaterialService {
         pager = PagerUtils.getPager(pager);
 
         List<ProductByDayBO> datas = productMaterialMapper.viewProductInByDay(condition);
+
+        msg.setPager(pager);
+        msg.setData(datas);
+        return msg;
+    }
+
+    @Override
+    @RequestMapping("/viewProductOutByDay")
+    public ResponseMsg<List<ProductByDayBO>> viewProductOutByDay(CommonCondition condition) {
+        logger.info("view product outbound By Day");
+        ResponseMsg<List<ProductByDayBO>> msg = new ResponseMsg<>();
+
+        Pager pager = condition.getPager();
+        Long total = orderProductMapper.getProductOutByDaySum(condition);
+        pager.setTotal(total);
+        pager = PagerUtils.getPager(pager);
+
+        List<ProductByDayBO> datas = orderProductMapper.viewProductOutByDay(condition);
 
         msg.setPager(pager);
         msg.setData(datas);

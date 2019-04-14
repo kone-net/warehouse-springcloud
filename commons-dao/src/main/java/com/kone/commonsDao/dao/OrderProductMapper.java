@@ -1,5 +1,6 @@
 package com.kone.commonsDao.dao;
 
+import com.kone.utils.bo.ProductByDayBO;
 import com.kone.utils.conditions.CommonCondition;
 import com.kone.utils.entity.OrderProduct;
 
@@ -25,4 +26,18 @@ public interface OrderProductMapper {
     List<OrderProduct> selectByProductId(Long productId, Long orderId);
 
 
+    /**
+     * 通过时间段查看产品的出库情况
+     *   显示该时间段，该产品总共使用的数量
+     * @param condition
+     * @return
+     */
+    List<ProductByDayBO> viewProductOutByDay(CommonCondition condition);
+
+    /**
+     * 通过时间段查看产品的出库情况 总条数
+     * @param condition
+     * @return
+     */
+    Long getProductOutByDaySum(CommonCondition condition);
 }

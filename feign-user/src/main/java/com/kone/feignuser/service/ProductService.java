@@ -51,6 +51,17 @@ public interface ProductService {
     ResponseMsg<List<ProductByDayBO>> viewProductInByDay(@RequestBody CommonCondition condition);
 
 
+    /**
+     * 通过时间段查看产品的出库统计
+     *    查询该时间段，出库该产品的总量
+     * @param condition 通过group by统计的总数，和该产品对应的id，通过id查询材料的详细
+     * @return
+     */
+    @RequestMapping(value = "/productMaterialService/viewProductOutByDay", consumes = "application/json")
+    @ResponseBody
+    ResponseMsg<List<ProductByDayBO>> viewProductOutByDay(@RequestBody CommonCondition condition);
+
+
 //    product matieral
 
     @RequestMapping(value = "/productMaterialNumService/viewProductMaterialNumByProductId", consumes = "application/json")

@@ -159,4 +159,51 @@
     AND yn = 0
   </select>
 
+
+  <resultMap id="ProductOutByDayResultMap" type="com.kone.utils.bo.ProductByDayBO">
+    <result column="product_id" jdbcType="BIGINT" property="productId" />
+    <result column="product_name" jdbcType="VARCHAR" property="productName" />
+    <result column="productNumSum" jdbcType="REAL" property="productNumSum" />
+  </resultMap>
+  <sql id="Product_By_Day_Column_List">
+    pm.product_id, SUM(pm.product_num) AS productNumSum, p.product_name
+  </sql>
+
+  <select id="viewProductOutByDay" parameterType="com.kone.utils.conditions.CommonCondition" resultMap="ProductOutByDayResultMap">
+    SELECT
+    <include refid="Product_By_Day_Column_List" />
+    FROM tb_order_product AS pm
+    LEFT JOIN tb_product AS p
+    ON pm.product_id = p.product_id
+    WHERE  pm.yn = 0
+    <if test="startTime != null and startTime !='' and endTime != null and endTime != ''">
+      AND DATE_FORMAT(pm.gmt_create,'%Y-%m-%d') BETWEEN #{startTime} AND #{endTime}
+    </if>
+    <if test="name != null and '' != name">
+      AND p.product_name LIKE '${name}%'
+    </if>
+    GROUP BY pm.product_id
+    limit #{pager.start},#{pager.size}
+  </select>
+
+  <select id="getProductOutByDaySum" parameterType="com.kone.utils.conditions.CommonCondition" resultType="java.lang.Long">
+    SELECT COUNT(1) FROM
+    (
+    SELECT
+    <include refid="Product_By_Day_Column_List" />
+    FROM tb_order_product AS pm
+    LEFT JOIN tb_product AS p
+    ON pm.product_id = p.product_id
+    WHERE  pm.yn = 0
+    <if test="startTime != null and startTime !='' and endTime != null and endTime != ''">
+      AND DATE_FORMAT(pm.gmt_create,'%Y-%m-%d') BETWEEN #{startTime} AND #{endTime}
+    </if>
+    <if test="name != null and '' != name">
+      AND p.product_name LIKE '${name}%'
+    </if>
+    GROUP BY pm.product_id
+    )
+    AS c
+  </select>
+
 </mapper>
