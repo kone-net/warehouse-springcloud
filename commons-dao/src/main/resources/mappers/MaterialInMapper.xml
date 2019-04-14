@@ -174,6 +174,9 @@
     <if test="startTime != null and startTime !='' and endTime != null and endTime != ''">
       AND DATE_FORMAT(gmt_create,'%Y-%m-%d') BETWEEN #{startTime} AND #{endTime}
     </if>
+    <if test="name != null and '' != name">
+      AND material_name LIKE '${name}%'
+    </if>
     GROUP BY material_id
     limit #{pager.start},#{pager.size}
   </select>
@@ -187,6 +190,9 @@
     WHERE  yn = 0
     <if test="startTime != null and startTime !='' and endTime != null and endTime != ''">
       AND DATE_FORMAT(gmt_create,'%Y-%m-%d') BETWEEN #{startTime} AND #{endTime}
+    </if>
+    <if test="name != null and '' != name">
+      AND material_name LIKE '${name}%'
     </if>
     GROUP BY material_id
     )

@@ -35,6 +35,12 @@
                     </div>
                 </div>
                 <div class="col-md-3">
+                    <div class="input-group">
+                        <span class="input-group-addon">材料名称</span>
+                        <input type="text" name="name" th:value="${condition.name}" class="form-control" placeholder="名称">
+                    </div>
+                </div>
+                <div class="col-md-3">
                     <button class="btn btn-success" type="submit">搜索</button>
                 </div>
             </form>
@@ -78,14 +84,14 @@
             }
             var startTime = [[${condition.startTime}]];
             var endTime = [[${condition.endTime}]];
+            var name = [[${condition.name}]];
             if (null == startTime || "null" == startTime) {
                 startTime = '';
             }
             if (null == endTime || "null" == endTime) {
                 endTime = '';
             }
-            console.log(num);
-            window.location.href='/material/viewMaterialInByDay?pager.size=10&pager.num='+ num+'&startTime='+startTime+'&endTime='+endTime;
+            window.location.href='/material/viewMaterialInByDay?pager.size=10&pager.num='+ num+'&startTime='+startTime+'&endTime='+endTime+'&name='+name;
         }
     </script>
    
