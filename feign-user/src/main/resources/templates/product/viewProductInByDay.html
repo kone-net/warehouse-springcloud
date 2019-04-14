@@ -17,10 +17,10 @@
     <div class="panel panel-success">
 
         <div class="panel-heading">
-            <h3 class="panel-title">原材料入库统计</h3>
+            <h3 class="panel-title">产品入库统计</h3>
         </div>
         <div class="panel-body">
-            <form action="/material/viewMaterialInByDay?pager.num=0&pager.size=10">
+            <form action="/product/viewProductInByDay?pager.num=0&pager.size=10">
                 <div class="col-md-3">
                     <div class="input-group">
                         <span class="input-group-addon">起始时间</span>
@@ -49,12 +49,12 @@
         <table class="table table-striped table-hover">
 
             <tr>
-                <th>材料名称</th>
+                <th>产品名称</th>
                 <th>入库总量</th>
             </tr>
             <tr th:each="data:${data.data}">
-                <td th:text="${data.material.materialName}"></td>
-                <td th:text="${data.materialNumSum}"></td>
+                <td th:text="${data.productName}"></td>
+                <td th:text="${data.productNumSum}"></td>
             </tr>
 
         </table>
@@ -91,10 +91,11 @@
             if (null == endTime || "null" == endTime) {
                 endTime = '';
             }
+
             if (null == name || "null" == name) {
                 name = '';
             }
-            window.location.href='/material/viewMaterialInByDay?pager.size=10&pager.num='+ num+'&startTime='+startTime+'&endTime='+endTime+'&name='+name;
+            window.location.href='/product/viewProductInByDay?pager.size=10&pager.num='+ num+'&startTime='+startTime+'&endTime='+endTime+'&name='+name;
         }
     </script>
    

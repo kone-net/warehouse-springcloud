@@ -1,6 +1,7 @@
 package com.kone.productservice.service.impl;
 
 import com.kone.productservice.service.IProductMaterialService;
+import com.kone.utils.bo.ProductByDayBO;
 import com.kone.utils.conditions.CommonCondition;
 import com.kone.utils.entity.*;
 import com.kone.utils.msg.MsgEnum;
@@ -119,5 +120,24 @@ public class ProductMaterialService implements IProductMaterialService {
         msg.setSum(sum);
         return msg;
     }
+
+    @Override
+    @RequestMapping("/viewProductInByDay")
+    public ResponseMsg<List<ProductByDayBO>> viewProductInByDay(@RequestBody CommonCondition condition) {
+        logger.info("view product put in storage By Day");
+        ResponseMsg<List<ProductByDayBO>> msg = new ResponseMsg<>();
+
+        Pager pager = condition.getPager();
+        Long total = productMaterialMapper.getProductInByDaySum(condition);
+        pager.setTotal(total);
+        pager = PagerUtils.getPager(pager);
+
+        List<ProductByDayBO> datas = productMaterialMapper.viewProductInByDay(condition);
+
+        msg.setPager(pager);
+        msg.setData(datas);
+        return msg;
+    }
+
 
 }

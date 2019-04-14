@@ -1,5 +1,6 @@
 package com.kone.feignuser.service;
 
+import com.kone.utils.bo.ProductByDayBO;
 import com.kone.utils.conditions.CommonCondition;
 import com.kone.utils.entity.*;
 import com.kone.utils.msg.ResponseMsg;
@@ -38,6 +39,16 @@ public interface ProductService {
     @RequestMapping(value = "/productService/deleteProduct", consumes = "application/json")
     @ResponseBody
     ResponseMsg deleteProduct(@RequestParam("productId") Long productId);
+
+    /**
+     * 通过时间段查看产品的入库统计
+     *    查询该时间段，入库该产品的总量
+     * @param condition 通过group by统计的总数，和该产品对应的id，通过id查询材料的详细
+     * @return
+     */
+    @RequestMapping(value = "/productMaterialService/viewProductInByDay", consumes = "application/json")
+    @ResponseBody
+    ResponseMsg<List<ProductByDayBO>> viewProductInByDay(@RequestBody CommonCondition condition);
 
 
 //    product matieral

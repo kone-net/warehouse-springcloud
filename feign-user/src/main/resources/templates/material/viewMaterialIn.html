@@ -89,7 +89,14 @@
                 num = num + 1;
             }
             var startTime = [[${condition.startTime}]];
-            var endTime = [[${condition.endTime}]];;
+            var endTime = [[${condition.endTime}]];
+            if (null == startTime || "null" == startTime) {
+                startTime = '';
+            }
+            if (null == endTime || "null" == endTime) {
+                endTime = '';
+            }
+
             window.location.href='/material/viewMaterialIn?pager.size=10&pager.num=' + num +'&id=' + materialId+'&startTime='+startTime+'&endTime='+endTime;
         }
     </script>

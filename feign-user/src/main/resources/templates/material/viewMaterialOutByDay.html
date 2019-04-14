@@ -92,6 +92,9 @@
             if (null == endTime || "null" == endTime) {
                 endTime = '';
             }
+            if (null == name || "null" == name) {
+                name = '';
+            }
             window.location.href='/material/viewMaterialOutByDay?pager.size=10&pager.num='+ num+'&startTime='+startTime+'&endTime='+endTime+'&name='+name;
         }
     </script>

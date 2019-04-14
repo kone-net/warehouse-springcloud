@@ -1,6 +1,7 @@
 package com.kone.feignuser.controller;
 
 import com.kone.feignuser.service.ProductService;
+import com.kone.utils.bo.ProductByDayBO;
 import com.kone.utils.conditions.CommonCondition;
 import com.kone.utils.dateUtils.DateUtil;
 import com.kone.utils.entity.*;
@@ -110,6 +111,21 @@ public class ProductController {
         return msg;
     }
 
+
+
+    /**
+     * 通过时间段查看材料的出库情况
+     *   显示该时间段，该材料总共使用的数量
+     * @param condition
+     * @return
+     */
+    @GetMapping("/viewProductInByDay")
+    public String viewProductInByDay(Model model, CommonCondition condition) {
+        ResponseMsg<List<ProductByDayBO>> data = productService.viewProductInByDay(condition);
+        model.addAttribute("data", data);
+        model.addAttribute("condition", condition);
+        return "product/viewProductInByDay";
+    }
 
 //    product series name
 
