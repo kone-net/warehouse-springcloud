@@ -1,11 +1,10 @@
 package com.kone.materialservice.service;
 
-import com.kone.utils.bo.MaterialInByDayBO;
+import com.kone.utils.bo.MaterialByDayBO;
 import com.kone.utils.conditions.CommonCondition;
 import com.kone.utils.entity.Material;
 import com.kone.utils.entity.MaterialIn;
 import com.kone.utils.msg.ResponseMsg;
-import com.kone.utils.pager.Pager;
 
 import java.util.List;
 
@@ -45,5 +44,13 @@ public interface IMaterialService {
      * @param condition
      * @return
      */
-    ResponseMsg<List<MaterialInByDayBO>> viewMaterialInByDay(CommonCondition condition);
+    ResponseMsg<List<MaterialByDayBO>> viewMaterialInByDay(CommonCondition condition);
+
+    /**
+     * 通过时间段查看材料的出库统计
+     *    查询该时间段，出库该材料的总量
+     * @param condition 通过group by统计的总数，和该材料对应的id，通过id查询材料的详细
+     * @return
+     */
+    ResponseMsg<List<MaterialByDayBO>> viewMaterialOutByDay(CommonCondition condition);
 }

@@ -1,7 +1,7 @@
 package com.kone.feignuser.controller;
 
 import com.kone.feignuser.service.MaterialService;
-import com.kone.utils.bo.MaterialInByDayBO;
+import com.kone.utils.bo.MaterialByDayBO;
 import com.kone.utils.conditions.CommonCondition;
 import com.kone.utils.entity.Material;
 import com.kone.utils.entity.MaterialDetails;
@@ -123,9 +123,23 @@ public class MaterialController {
      */
     @GetMapping("/viewMaterialInByDay")
     public String viewMaterialInByDay(Model model, CommonCondition condition) {
-        ResponseMsg<List<MaterialInByDayBO>> materialDetails = materialService.viewMaterialInByDay(condition);
+        ResponseMsg<List<MaterialByDayBO>> materialDetails = materialService.viewMaterialInByDay(condition);
         model.addAttribute("data", materialDetails);
         model.addAttribute("condition", condition);
         return "material/viewMaterialInByDay";
+    }
+
+    /**
+     * 通过时间段查看材料的出库情况
+     *   显示该时间段，该材料总共使用的数量
+     * @param condition
+     * @return
+     */
+    @GetMapping("/viewMaterialOutByDay")
+    public String viewMaterialOutByDay(Model model, CommonCondition condition) {
+        ResponseMsg<List<MaterialByDayBO>> materialDetails = materialService.viewMaterialOutByDay(condition);
+        model.addAttribute("data", materialDetails);
+        model.addAttribute("condition", condition);
+        return "material/viewMaterialOutByDay";
     }
 }

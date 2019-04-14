@@ -1,6 +1,6 @@
 package com.kone.commonsDao.dao;
 
-import com.kone.utils.bo.MaterialInByDayBO;
+import com.kone.utils.bo.MaterialByDayBO;
 import com.kone.utils.conditions.CommonCondition;
 import com.kone.utils.entity.MaterialIn;
 
@@ -31,7 +31,7 @@ public interface MaterialInMapper {
      * @param condition
      * @return
      */
-    List<MaterialInByDayBO> viewMaterialInByDay(CommonCondition condition);
+    List<MaterialByDayBO> viewMaterialInByDay(CommonCondition condition);
 
     /**
      * 通过时间段查看材料的入库情况 总条数

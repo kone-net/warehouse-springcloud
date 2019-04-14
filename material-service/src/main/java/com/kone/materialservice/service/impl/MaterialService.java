@@ -1,8 +1,9 @@
 package com.kone.materialservice.service.impl;
 
+import com.kone.commonsDao.dao.MaterialDetailsMapper;
 import com.kone.commonsDao.dao.MaterialInMapper;
 import com.kone.materialservice.service.IMaterialService;
-import com.kone.utils.bo.MaterialInByDayBO;
+import com.kone.utils.bo.MaterialByDayBO;
 import com.kone.utils.conditions.CommonCondition;
 import com.kone.utils.entity.Material;
 import com.kone.utils.entity.MaterialIn;
@@ -16,11 +17,9 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
-import java.util.Date;
 import java.util.List;
 
 @RestController
@@ -34,6 +33,9 @@ public class MaterialService implements IMaterialService {
 
     @Resource
     private MaterialInMapper materialInMapper;
+
+    @Resource
+    private MaterialDetailsMapper materialDetailsMapper;
 
     @Override
     @RequestMapping("/viewMaterial")
@@ -173,17 +175,34 @@ public class MaterialService implements IMaterialService {
 
     @Override
     @RequestMapping("/viewMaterialInByDay")
-    public ResponseMsg<List<MaterialInByDayBO>> viewMaterialInByDay(@RequestBody CommonCondition condition) {
+    public ResponseMsg<List<MaterialByDayBO>> viewMaterialInByDay(@RequestBody CommonCondition condition) {
         logger.info("viewMaterialInByDay");
-        ResponseMsg<List<MaterialInByDayBO>> msg = new ResponseMsg<>();
+        ResponseMsg<List<MaterialByDayBO>> msg = new ResponseMsg<>();
 
         Pager pager = condition.getPager();
         Long total = materialInMapper.getMaterialInByDaySum(condition);
         pager.setTotal(total);
         pager = PagerUtils.getPager(pager);
-        condition.setPager(pager);
 
-        List<MaterialInByDayBO> materials = materialInMapper.viewMaterialInByDay(condition);
+        List<MaterialByDayBO> materials = materialInMapper.viewMaterialInByDay(condition);
+
+        msg.setPager(pager);
+        msg.setData(materials);
+        return msg;
+    }
+
+    @Override
+    @RequestMapping("/viewMaterialOutByDay")
+    public ResponseMsg<List<MaterialByDayBO>> viewMaterialOutByDay(@RequestBody CommonCondition condition) {
+        logger.info("view Material deliver By Day");
+        ResponseMsg<List<MaterialByDayBO>> msg = new ResponseMsg<>();
+
+        Pager pager = condition.getPager();
+        Long total = materialDetailsMapper.getMaterialOutByDaySum(condition);
+        pager.setTotal(total);
+        pager = PagerUtils.getPager(pager);
+
+        List<MaterialByDayBO> materials = materialDetailsMapper.viewMaterialOutByDay(condition);
 
         msg.setPager(pager);
         msg.setData(materials);

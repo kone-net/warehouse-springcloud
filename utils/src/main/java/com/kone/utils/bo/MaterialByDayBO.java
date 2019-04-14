@@ -2,7 +2,7 @@ package com.kone.utils.bo;
 
 import com.kone.utils.entity.Material;
 
-public class MaterialInByDayBO {
+public class MaterialByDayBO {
     private Long materialId;
 
     private Float materialNumSum;
