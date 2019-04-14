@@ -3,6 +3,7 @@ package com.kone.feignuser.controller;
 import com.kone.feignuser.service.MaterialService;
 import com.kone.utils.bo.MaterialByDayBO;
 import com.kone.utils.conditions.CommonCondition;
+import com.kone.utils.dateUtils.DateUtil;
 import com.kone.utils.entity.Material;
 import com.kone.utils.entity.MaterialDetails;
 import com.kone.utils.entity.MaterialIn;
@@ -13,9 +14,11 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
+import java.util.Date;
 import java.util.List;
 
 @Api(value = "材料操作", tags = "材料操作")
@@ -45,7 +48,12 @@ public class MaterialController {
      */
     @PostMapping("/saveMaterial")
     @ResponseBody
-    public ResponseMsg saveMaterial(Material material) {
+    public ResponseMsg saveMaterial(Material material, String date) {
+        if(!StringUtils.isEmpty(date)) {
+            material.setGmtCreate(DateUtil.getDateByString(date));
+        } else {
+            material.setGmtCreate(new Date());
+        }
         ResponseMsg msg = materialService.saveMaterial(material);
         return msg;
     }

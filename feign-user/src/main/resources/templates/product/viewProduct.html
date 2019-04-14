@@ -38,6 +38,7 @@
                 <th>创建日期</th>
                 <th>材料关系</th>
                 <th>产品入库</th>
+                <th>产品出库</th>
                 <th>入库详情</th>
                 <th>删除</th>
             </tr>
@@ -58,6 +59,13 @@
                         入库
                     </button>
                 </td>
+
+                <td>
+                    <button class="btn btn-sm btn-info" style="background-color: darkgreen;border: darkgreen" data-toggle="modal" data-target="#myModal2" th:onclick= "'javascript:addProduct('+${data.productId}+')'">
+                        出库
+                    </button>
+                </td>
+
                 <td>
                     <button class="btn btn-sm btn-success" th:onclick= "'javascript:go2('+${data.productId}+')'">
                         查看入库详情
@@ -108,13 +116,16 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                    <h4 class="modal-title" id="myModalLabel1">保存信息</h4>
+                    <h4 class="modal-title" id="myModalLabel1">产品入库</h4>
                 </div>
                 <div class="modal-body">
                     <form id="form1">
                         <input type="hidden" class="form-control" name="productId" id="productId"><br>
 
                         <input type="number" class="form-control" name="productNum" placeholder="入库数量"><br>
+
+                        <input type="date" class="form-control" name="date" placeholder="入库时间"><br>
+
                     </form>
                 </div>
                 <div class="modal-footer">
@@ -124,6 +135,33 @@
             </div><!-- /.modal-content -->
         </div><!-- /.modal -->
     </div>
+
+    <!-- product warehousing -->
+    <div class="modal fade" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title" id="myModalLabel2">产品出库</h4>
+                </div>
+                <div class="modal-body">
+                    <form id="form2">
+                        <input type="hidden" class="form-control" name="productId" id="productId2"><br>
+
+                        <input type="number" class="form-control" name="productNum" placeholder="出库数量"><br>
+
+                        <input type="date" class="form-control" name="date" placeholder="出库时间"><br>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                    <button type="button" class="btn btn-primary" id="save2">保存</button>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal -->
+    </div>
+    <!-- /product warehousing -->
+
     <!-- JS Scripts-->
     <!-- jQuery Js -->
     <script src="/assets/js/jquery-1.10.2.js"></script>

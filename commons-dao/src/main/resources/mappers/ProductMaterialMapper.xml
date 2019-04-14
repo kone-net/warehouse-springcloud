@@ -26,7 +26,7 @@
     insert into tb_product_material (product_material_id, product_id, product_num, 
       gmt_create, gmt_update,yn)
     values (#{productMaterialId,jdbcType=BIGINT}, #{productId,jdbcType=BIGINT}, #{productNum,jdbcType=BIGINT}, 
-      now(),now(),0)
+       #{gmtCreate,jdbcType=TIMESTAMP},now(),0)
   </insert>
   <insert id="insertSelective" parameterType="com.kone.utils.entity.ProductMaterial">
     insert into tb_product_material

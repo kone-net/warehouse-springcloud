@@ -21,7 +21,7 @@
       material_unit_price, material_num, gmt_create, 
       gmt_update, yn)
     values (#{materialId,jdbcType=BIGINT}, #{materialName,jdbcType=VARCHAR}, #{materialUnit,jdbcType=VARCHAR}, 
-      #{materialUnitPrice,jdbcType=REAL}, #{materialNum,jdbcType=REAL}, now(), now(),0)
+      #{materialUnitPrice,jdbcType=REAL}, #{materialNum,jdbcType=REAL}, #{gmtCreate,jdbcType=TIMESTAMP}, now(),0)
   </insert>
   <insert id="insertSelective" parameterType="com.kone.utils.entity.Material">
     insert into tb_material

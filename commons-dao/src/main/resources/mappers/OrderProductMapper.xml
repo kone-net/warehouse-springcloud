@@ -30,7 +30,7 @@
       product_num, delivery_date, gmt_create, 
       gmt_update, yn)
     values (#{orderProductId,jdbcType=BIGINT}, #{orderId,jdbcType=BIGINT}, #{productId,jdbcType=BIGINT}, 
-      #{productNum,jdbcType=BIGINT}, #{deliveryDate,jdbcType=VARCHAR}, now(), now(), 0)
+      #{productNum,jdbcType=BIGINT}, #{deliveryDate,jdbcType=VARCHAR}, #{gmtCreate,jdbcType=TIMESTAMP}, now(), 0)
   </insert>
   <insert id="insertSelective" parameterType="com.kone.utils.entity.OrderProduct">
     insert into tb_order_product
