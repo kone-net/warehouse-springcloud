@@ -4,19 +4,19 @@ This system is about warehouse management and using spring cloud.
 Introduce
 This system is divided into 13 parts.
 
-**1.admin-server**
-**2.auth-user**
-**3.auth-service**
-**4.commons-dao**
-**5.config-server**
-**6.eureka-server**
-**7.feign-user**
-**8.maiterial-service**
-**9.order-service**
-**10.product-service**
-**11.user-service**
-**12.utils**
-**13.zuul-server**
+**1.admin-server**  
+**2.auth-user**  
+**3.auth-service**  
+**4.commons-dao**  
+**5.config-server**  
+**6.eureka-server**  
+**7.feign-user**  
+**8.maiterial-service**  
+**9.order-service**  
+**10.product-service**  
+**11.user-service**  
+**12.utils**  
+**13.zuul-server**  
 -------
 
 The admin-server is a monitor.It can see all the system health status.
