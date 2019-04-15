@@ -145,7 +145,7 @@ public class ProductMaterialService implements IProductMaterialService {
 
     @Override
     @RequestMapping("/viewProductOutByDay")
-    public ResponseMsg<List<ProductByDayBO>> viewProductOutByDay(CommonCondition condition) {
+    public ResponseMsg<List<ProductByDayBO>> viewProductOutByDay(@RequestBody CommonCondition condition) {
         logger.info("view product outbound By Day");
         ResponseMsg<List<ProductByDayBO>> msg = new ResponseMsg<>();
 

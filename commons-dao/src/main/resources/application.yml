@@ -33,7 +33,5 @@ mybatis:
   type-aliases-package: com.kone.utils.entity
   mapper-locations: classpath:mappers/*.xml
 
-logging:
-  config: classpath:config/log4j2.xml
 
 
