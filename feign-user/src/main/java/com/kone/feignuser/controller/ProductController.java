@@ -4,6 +4,7 @@ import com.kone.feignuser.service.ProductService;
 import com.kone.utils.bo.ProductByDayBO;
 import com.kone.utils.conditions.CommonCondition;
 import com.kone.utils.dateUtils.DateUtil;
+import com.kone.utils.dto.ProductStatisticsDTO;
 import com.kone.utils.entity.*;
 import com.kone.utils.msg.ResponseMsg;
 import com.kone.utils.pager.Pager;
@@ -102,12 +103,20 @@ public class ProductController {
     @PostMapping("/saveProductMaterial")
     @ResponseBody
     public ResponseMsg saveProductMaterial(ProductMaterial productMaterial, String date) {
-        if(!StringUtils.isEmpty(date)) {
-            productMaterial.setGmtCreate(DateUtil.getDateByString(date));
-        } else {
-            productMaterial.setGmtCreate(new Date());
-        }
+        productMaterial.setGmtCreate(DateUtil.getDateByString(date));
         ResponseMsg msg = productService.saveProductMaterial(productMaterial);
+        return msg;
+    }
+
+    /**
+     * Product warehousing operation.
+     * @param dto
+     * @return
+     */
+    @PostMapping("/productOutbound")
+    @ResponseBody
+    public ResponseMsg productOutbound(ProductStatisticsDTO dto) {
+        ResponseMsg msg = productService.productOutbound(dto);
         return msg;
     }
 

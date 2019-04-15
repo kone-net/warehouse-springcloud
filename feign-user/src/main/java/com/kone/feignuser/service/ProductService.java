@@ -2,6 +2,7 @@ package com.kone.feignuser.service;
 
 import com.kone.utils.bo.ProductByDayBO;
 import com.kone.utils.conditions.CommonCondition;
+import com.kone.utils.dto.ProductStatisticsDTO;
 import com.kone.utils.entity.*;
 import com.kone.utils.msg.ResponseMsg;
 import com.kone.utils.pager.Pager;
@@ -31,6 +32,17 @@ public interface ProductService {
     @RequestMapping(value = "/productService/viewAllProduct", consumes = "application/json")
     @ResponseBody
     ResponseMsg<List<Product>> viewAllProduct();
+
+
+    /**
+     * Product warehousing operation.
+     * @param dto
+     * @return
+     */
+    @RequestMapping(value = "/productService/productOutbound", consumes = "application/json")
+    @ResponseBody
+    ResponseMsg productOutbound(@RequestBody ProductStatisticsDTO dto);
+
 
     @RequestMapping(value = "/productMaterialService/viewProductMaterialByProductId", consumes = "application/json")
     @ResponseBody

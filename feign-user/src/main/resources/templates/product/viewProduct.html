@@ -61,7 +61,7 @@
                 </td>
 
                 <td>
-                    <button class="btn btn-sm btn-info" style="background-color: darkgreen;border: darkgreen" data-toggle="modal" data-target="#myModal2" th:onclick= "'javascript:addProduct('+${data.productId}+')'">
+                    <button class="btn btn-sm btn-info" style="background-color: darkgreen;border: darkgreen" data-toggle="modal" data-target="#myModal2" th:onclick= "'javascript:productOutbound('+${data.productId}+')'">
                         出库
                     </button>
                 </td>
@@ -148,7 +148,7 @@
                     <form id="form2">
                         <input type="hidden" class="form-control" name="productId" id="productId2"><br>
 
-                        <input type="number" class="form-control" name="productNum" placeholder="出库数量"><br>
+                        <input type="number" class="form-control" name="num" placeholder="出库数量"><br>
 
                         <input type="date" class="form-control" name="date" placeholder="出库时间"><br>
                     </form>
@@ -208,11 +208,38 @@
             $("#productId").val(productId);
         }
 
+        function productOutbound(productId) {
+            $("#productId2").val(productId);
+        }
+
         $("#save1").click(function() {
-            var form = new FormData(document.getElementById("form1"));
+            var form = new FormData(document.getElementById("form2"));
             $.ajax({
                 type:"post",
-                url:"/product/saveProductMaterial",
+                url:"/product/productOutbound",
+                data:form,
+                dataType:"json",
+                processData:false,
+                contentType:false,
+                success:function(data){
+                    if(data.code == 200){
+                        swal("提交成功!", "", "success");
+                        window.setTimeout("location.reload()",700);
+                    }else{
+                        swal("提交失败！", data.msg, "error");
+                    }
+                },
+                error:function(msg){
+                    swal("提交失败！", "请重试！", "error");
+                }
+            })
+        })
+
+        $("#save2").click(function() {
+            var form = new FormData(document.getElementById("form"));
+            $.ajax({
+                type:"post",
+                url:"/product/saveProduct",
                 data:form,
                 dataType:"json",
                 processData:false,
