@@ -139,7 +139,7 @@
 
                         <input type="number" class="form-control" name="materialInNum" placeholder="入库数量"><br>
 
-                        <input type="date" class="form-control" name="date" placeholder="入库时间"><br>
+                        <input type="date" class="form-control date" name="date" placeholder="入库时间"><br>
                     </form>
                 </div>
                 <div class="modal-footer">
@@ -205,6 +205,11 @@
 
         function materialIn(id) {
             $("#materialId").val(id)
+            var time = new Date();
+            var day = ("0" + time.getDate()).slice(-2);
+            var month = ("0" + (time.getMonth() + 1)).slice(-2);
+            var today = time.getFullYear() + "-" + (month) + "-" + (day);
+            $(".date").val(today);
         }
 
         $("#save1").click(function(){

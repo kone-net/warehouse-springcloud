@@ -124,7 +124,7 @@
 
                         <input type="number" class="form-control" name="productNum" placeholder="入库数量"><br>
 
-                        <input type="date" class="form-control" name="date" placeholder="入库时间"><br>
+                        <input type="date" class="form-control date" name="date" placeholder="入库时间"><br>
 
                     </form>
                 </div>
@@ -150,7 +150,7 @@
 
                         <input type="number" class="form-control" name="num" placeholder="出库数量"><br>
 
-                        <input type="date" class="form-control" name="date" placeholder="出库时间"><br>
+                        <input type="date" class="form-control date" name="date" placeholder="出库时间"><br>
                     </form>
                 </div>
                 <div class="modal-footer">
@@ -206,17 +206,27 @@
 
         function addProduct(productId) {
             $("#productId").val(productId);
+            setDate();
+        }
+
+        function setDate() {
+            var time = new Date();
+            var day = ("0" + time.getDate()).slice(-2);
+            var month = ("0" + (time.getMonth() + 1)).slice(-2);
+            var today = time.getFullYear() + "-" + (month) + "-" + (day);
+            $(".date").val(today);
         }
 
         function productOutbound(productId) {
             $("#productId2").val(productId);
+            setDate();
         }
 
         $("#save1").click(function() {
             var form = new FormData(document.getElementById("form2"));
             $.ajax({
                 type:"post",
-                url:"/product/productOutbound",
+                url:"/product/saveProductMaterial",
                 data:form,
                 dataType:"json",
                 processData:false,
@@ -236,16 +246,15 @@
         })
 
         $("#save2").click(function() {
-            var form = new FormData(document.getElementById("form"));
+            var form = new FormData(document.getElementById("form2"));
             $.ajax({
                 type:"post",
-                url:"/product/saveProduct",
+                url:"/product/productOutbound",
                 data:form,
                 dataType:"json",
                 processData:false,
                 contentType:false,
                 success:function(data){
-                    console.log(data);
                     if(data.code == 200){
                         swal("提交成功!", "", "success");
                         window.setTimeout("location.reload()",700);
@@ -255,7 +264,6 @@
                 },
                 error:function(msg){
                     swal("提交失败！", "请重试！", "error");
-                    window.setTimeout("location.reload()",700);
                 }
             })
         })
