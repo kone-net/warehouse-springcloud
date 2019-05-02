@@ -16,8 +16,9 @@ zuul:
       path: /static/**
       url: http://eureka-server:8765/static
     auth-user:
-      path: /auth-user/**
+      path: /
       serviceId: auth-user
+      sensitive-headers:
     auth-server:
       path: /
       serviceId: auth-service
@@ -25,15 +26,16 @@ zuul:
       path: /
       serviceId: feign-user
   prefix: /warehouse
+  sensitive-headers:
 
 
-#security:
-#  oauth2:
-#    client:
-#      access-token-uri: http://localhost:9999/uaa/oauth/token #令牌端点
-#      user-authorization-uri: http://localhost:9999/uaa/oauth/authorize #授权端点
-#      client-id: client #OAuth2客户端ID
-#      client-secret: client #OAuth2客户端密钥
-#    resource:
-#      jwt:
-#        key-uri: http://localhost:9999/uaa/oauth/token_key
+security:
+  oauth2:
+    client:
+      access-token-uri: http://localhost:9999/uaa/oauth/token
+      user-authorization-uri: http://localhost:9999/uaa/oauth/authorize
+      client-id: client
+      client-secret: client
+    resource:
+      jwt:
+        key-uri: http://localhost:9999/uaa/oauth/token_key

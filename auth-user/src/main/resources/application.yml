@@ -31,3 +31,16 @@ management:
   endpoint:
     health:
       show-details: ALWAYS
+
+#security:
+#  oauth2:
+#    resource:
+#      jwt:
+#        key-uri: http://localhost:9999/oauth/token_key
+#    client:
+#      client-id: client
+#      client-secret: client
+#      access-token-uri: http://localhost:9999/oauth/token
+#      grant-type: password
+#      scope: server
+#      user-authorization-uri: http://localhost:9999/oauth/authorize

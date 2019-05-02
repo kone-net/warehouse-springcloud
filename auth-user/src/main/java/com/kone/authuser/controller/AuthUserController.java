@@ -19,14 +19,16 @@ public class AuthUserController {
 
     @PostMapping("/register")
     public String postUser(@RequestParam("username") String username,
-                         @RequestParam("password") String password){
+                         @RequestParam("password") String password, HttpServletRequest request){
+        String header = request.getHeader("Authorization");
+        System.out.println(header);
 
         return username + " " + BPwdEncoderUtil.BCryptPassword(password);
     }
 
     @Resource
     private AuthServiceClient client;
-    @PostMapping("/login")
+    @RequestMapping("/login")
     public JWT login(@RequestParam("username") String username,
                            @RequestParam("password") String password){
         System.out.println("username is " + username + " " + password);

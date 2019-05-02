@@ -28,18 +28,22 @@ public class WarehouseZuulFilter extends ZuulFilter {
 
     @Override
     public Object run() throws ZuulException {
+        System.out.println("zuul filter ");
         RequestContext ctx = RequestContext.getCurrentContext();
         HttpServletRequest request = ctx.getRequest();
-        Object accessToken = request.getParameter("token");
-        if(null == accessToken) {
-            ctx.setSendZuulResponse(false);
-            ctx.setResponseStatusCode(401);
-            try {
-                ctx.getResponse().getWriter().print("token is empty");
-            } catch (Exception e) {
 
-            }
-        }
+        String header = request.getHeader("Authorization");
+        System.out.println(header);
+//        Object accessToken = request.getParameter("token");
+//        if(null == accessToken) {
+//            ctx.setSendZuulResponse(false);
+//            ctx.setResponseStatusCode(401);
+//            try {
+//                ctx.getResponse().getWriter().print("token is empty");
+//            } catch (Exception e) {
+//
+//            }
+//        }
         return null;
     }
 }

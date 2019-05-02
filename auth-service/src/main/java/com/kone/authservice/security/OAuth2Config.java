@@ -11,12 +11,15 @@ import org.springframework.security.oauth2.config.annotation.web.configuration.A
 import org.springframework.security.oauth2.config.annotation.web.configuration.EnableAuthorizationServer;
 import org.springframework.security.oauth2.config.annotation.web.configurers.AuthorizationServerEndpointsConfigurer;
 import org.springframework.security.oauth2.config.annotation.web.configurers.AuthorizationServerSecurityConfigurer;
+import org.springframework.security.oauth2.provider.token.TokenEnhancer;
+import org.springframework.security.oauth2.provider.token.TokenEnhancerChain;
 import org.springframework.security.oauth2.provider.token.TokenStore;
 import org.springframework.security.oauth2.provider.token.store.JwtAccessTokenConverter;
 import org.springframework.security.oauth2.provider.token.store.JwtTokenStore;
 import org.springframework.security.oauth2.provider.token.store.KeyStoreKeyFactory;
 
 import javax.annotation.Resource;
+import java.util.Arrays;
 
 @Configuration
 @EnableAuthorizationServer
@@ -62,13 +65,19 @@ public class OAuth2Config extends AuthorizationServerConfigurerAdapter {
 
     @Override
     public void configure(AuthorizationServerEndpointsConfigurer endpoints) throws Exception {
+//        TokenEnhancerChain tokenEnhancerChain = new TokenEnhancerChain();
+//        tokenEnhancerChain.setTokenEnhancers(Arrays.asList(tokenEnhancer(), jwtAccessTokenConverter()));
         endpoints.tokenStore(jwtTokenStore())
+//                .tokenEnhancer(tokenEnhancerChain)
                 .tokenEnhancer(jwtAccessTokenConverter())
-//                .accessTokenConverter(jwtAccessTokenConverter())
-//                .reuseRefreshTokens(false)
+                .accessTokenConverter(jwtAccessTokenConverter())
                 //配置以生效password模式
                 .authenticationManager(authenticationManager);
-//                .userDetailsService(userDetailsService);
+    }
+
+    @Bean
+    public TokenEnhancer tokenEnhancer() {
+        return new TokenEnhancerConfiguration();
     }
 
     @Override
@@ -76,6 +85,5 @@ public class OAuth2Config extends AuthorizationServerConfigurerAdapter {
         security.allowFormAuthenticationForClients()
                 .tokenKeyAccess("permitAll()")// 开启/oauth/token_key验证端口无权限访问
                 .checkTokenAccess("isAuthenticated()");// 开启/oauth/check_token验证端口认证权限访问
-        security.allowFormAuthenticationForClients();
     }
 }

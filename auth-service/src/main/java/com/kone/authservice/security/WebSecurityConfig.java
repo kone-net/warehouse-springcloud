@@ -30,8 +30,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
         @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth.userDetailsService(userServiceDetail)
-                .passwordEncoder(passwordEncoder());
+        auth.userDetailsService(userServiceDetail);
+//                .passwordEncoder(passwordEncoder());
 
 //        auth.inMemoryAuthentication()
 //                .passwordEncoder(new MyPasswordEncoder())
@@ -58,30 +58,13 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-//        http.csrf().disable();
-//        http.antMatcher("/oauth/**")
-//                .authorizeRequests()
-//                .antMatchers("/oauth/login").permitAll()
-//                .antMatchers("/oauth/token").permitAll()
-//                .antMatchers("/oauth/check_token").permitAll()
-//                .antMatchers("/oauth/confirm_access").permitAll()
-//                .antMatchers("/user/login").permitAll()
-//                .antMatchers("/oauth/approvale/confirm").permitAll()
-//                .antMatchers("/oauth/approvale/error").permitAll()
-//                .anyRequest().authenticated()
-//                .and()
-//                .formLogin()
-//                .loginPage("/user/login")
-//                .loginProcessingUrl("/oauth/confirm_access");
 
-        http    // 配置登陆页/login并允许访问
-                .formLogin().permitAll()
-                // 登出页
-                .and().logout().logoutUrl("/logout").logoutSuccessUrl("/")
-                // 其余所有请求全部需要鉴权认证
-                .and().authorizeRequests().anyRequest().authenticated()
-                // 由于使用的是JWT，我们这里不需要csrf
-                .and().csrf().disable();
+        http
+                .csrf().disable()
+                .requestMatchers().anyRequest().
+                and().authorizeRequests().antMatchers("/kone/*").authenticated().
+                and().formLogin().loginPage("/login").permitAll()
+                .and().logout().logoutUrl("/logout").logoutSuccessUrl("/");
 
 //        http
 //                .csrf().disable() //关闭CSRF
