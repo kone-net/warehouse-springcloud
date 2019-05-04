@@ -53,6 +53,7 @@ public class OAuth2Config extends AuthorizationServerConfigurerAdapter {
         // 配置jks文件
         KeyStoreKeyFactory keyStoreKeyFactory = new KeyStoreKeyFactory(new ClassPathResource("fzp-jwt.jks"), "fzp123".toCharArray());
         JwtAccessTokenConverter converter = new JwtAccessTokenConverter();
+//        converter.setSigningKey("kone");
         converter.setKeyPair(keyStoreKeyFactory.getKeyPair("fzp-jwt"));
         return converter;
     }
@@ -65,11 +66,11 @@ public class OAuth2Config extends AuthorizationServerConfigurerAdapter {
 
     @Override
     public void configure(AuthorizationServerEndpointsConfigurer endpoints) throws Exception {
-//        TokenEnhancerChain tokenEnhancerChain = new TokenEnhancerChain();
-//        tokenEnhancerChain.setTokenEnhancers(Arrays.asList(tokenEnhancer(), jwtAccessTokenConverter()));
+        TokenEnhancerChain tokenEnhancerChain = new TokenEnhancerChain();
+        tokenEnhancerChain.setTokenEnhancers(Arrays.asList(tokenEnhancer(), jwtAccessTokenConverter()));
         endpoints.tokenStore(jwtTokenStore())
-//                .tokenEnhancer(tokenEnhancerChain)
-                .tokenEnhancer(jwtAccessTokenConverter())
+                .tokenEnhancer(tokenEnhancerChain)
+//                .tokenEnhancer(jwtAccessTokenConverter())
                 .accessTokenConverter(jwtAccessTokenConverter())
                 //配置以生效password模式
                 .authenticationManager(authenticationManager);
