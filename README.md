@@ -29,5 +29,26 @@ The eureka-server is a register center.
 
 The feign-user is a web site.Using the feign to call other part of system.And getting the data from the other part of the system, and show it one the website.
 
+The zuul-server is a gateway.
 
------------
+
+
+
+
+
+-----
+git operation:
+1.git checkout -b dev
+-b mean create and switch the branch.
+
+It also can use:
+git branch dev
+git checkout dev
+
+2.show current branch:
+git branch
+
+3.switch the branch
+git checkout master
+-----
+>>>>>>> dev
