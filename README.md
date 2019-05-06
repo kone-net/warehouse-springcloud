@@ -29,7 +29,7 @@ The eureka-server is a register center.
 
 The feign-user is a web site.Using the feign to call other part of system.And getting the data from the other part of the system, and show it one the website.
 
-
+The zuul-server is a gateway.
 
 
 
