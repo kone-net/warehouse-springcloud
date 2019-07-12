@@ -2,7 +2,6 @@ eureka:
   client:
     serviceUrl:
       defaultZone: http://eureka-server:8761/eureka
-
 server:
   port: 8771
 foo: foo version 1

@@ -2,13 +2,11 @@ eureka:
   client:
     serviceUrl:
       defaultZone: http://eureka-server:8761/eureka
-
 server:
-  port: 8772
-
+  port: 8763
 spring:
   application:
-    name: order-service
+    name: user-service
   datasource:
     type: com.alibaba.druid.pool.DruidDataSource
     url: jdbc:mysql://mysql:3306/warehouse_mg
@@ -36,3 +34,4 @@ mybatis:
 ribbon:
   eureka:
     enabled: true
+

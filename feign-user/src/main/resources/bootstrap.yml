@@ -1,6 +1,6 @@
 spring:
   application:
-    name: order-service
+    name: feign-user
   cloud:
     config:
       uri: http://config-server:8769

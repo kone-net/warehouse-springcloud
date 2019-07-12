@@ -1,6 +1,6 @@
 spring:
   application:
-    name: order-service
+    name: user-service
   cloud:
     config:
       uri: http://config-server:8769
