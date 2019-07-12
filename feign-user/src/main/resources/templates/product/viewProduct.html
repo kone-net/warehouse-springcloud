@@ -21,9 +21,22 @@
         </div>
         <div class="panel-body">
             <div class="col-md-6">
-                <br>
                 <button class="btn btn-success" data-toggle="modal" data-target="#myModal">添加产品</button>
-                <br>
+            </div>
+
+            <div class="col-md-6">
+                <form action="/product/viewProduct?pager.num=0&pager.size=10">
+                    <div class="col-md-6">
+                        <div class="input-group">
+                            <span class="input-group-addon">产品名称</span>
+                            <input type="text" name="name" th:value="${condition.name}" class="form-control" placeholder="名称">
+                        </div>
+                    </div>
+
+                    <div class="col-md-3">
+                        <button class="btn btn-success" type="submit">搜索</button>
+                    </div>
+                </form>
             </div>
         </div>
 
@@ -170,7 +183,7 @@
 
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
-    <script>
+    <script th:inline="javascript">
         $("#save").click(function() {
             var form = new FormData(document.getElementById("form"));
             $.ajax({
@@ -269,12 +282,17 @@
         })
 
         function pager(num, type) {
+
+            var name = [[${condition.name}]];
+            if(name == null) {
+                name = "";
+            }
             if(0 == type) {
                 num = num - 1;
             } else {
                 num = num + 1;
             }
-            window.location.href='/product/viewProduct?size=10&num=' + num;
+            window.location.href='/product/viewProduct?pager.size=10&pager.num=' + num + '&name=' + name;
         }
 
         function deleteItem(id) {

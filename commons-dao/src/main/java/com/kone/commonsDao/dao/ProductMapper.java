@@ -19,7 +19,7 @@ public interface ProductMapper {
 
     int updateByPrimaryKey(Product record);
 
-    List<Product> selectByPager(Pager pager);
+    List<Product> selectByPager(CommonCondition condition);
 
     Product selectByProductName(String productName);
 

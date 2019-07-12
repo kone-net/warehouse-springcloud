@@ -117,12 +117,15 @@
     where product_id = #{productId,jdbcType=BIGINT}
   </update>
 
-  <select id="selectByPager" parameterType="com.kone.utils.pager.Pager" resultMap="BaseResultMap">
+  <select id="selectByPager" parameterType="com.kone.utils.conditions.CommonCondition" resultMap="BaseResultMap">
     select
     <include refid="Base_Column_List" />
     from tb_product
     WHERE yn = 0
-    limit #{start},#{size}
+    <if test="name != null and '' != name">
+      AND product_name LIKE '${name}%'
+    </if>
+    limit #{pager.start},#{pager.size}
   </select>
 
   <select id="selectByProductName" parameterType="java.lang.String" resultMap="BaseResultMap">
@@ -137,6 +140,9 @@
   <select id="countByPager" parameterType="com.kone.utils.conditions.CommonCondition" resultType="java.lang.Long">
     SELECT COUNT(*) FROM tb_product
     WHERE yn = 0
+    <if test="name != null and '' != name">
+      AND product_name LIKE '${name}%'
+    </if>
   </select>
 
   <select id="viewAllProduct" parameterType="java.lang.String" resultMap="BaseResultMap">

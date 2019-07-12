@@ -65,7 +65,7 @@ CREATE TABLE tb_product_material(
   product_num bigint comment'产品入库数量',
   gmt_create datetime,
   gmt_update datetime,
-  yn INT
+  yn INT,
   INDEX product_id_index(product_id)
 ) comment='产品和原材料关系（产品入库表）' ENGINE=InnoDB DEFAULT CHARSET='utf8';
 

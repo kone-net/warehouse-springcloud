@@ -23,7 +23,7 @@ public interface ProductService {
 
     @RequestMapping(value = "/productService/viewProduct", consumes = "application/json")
     @ResponseBody
-    ResponseMsg<List<Product>> viewProduct(@RequestBody Pager pager);
+    ResponseMsg<List<Product>> viewProduct(@RequestBody CommonCondition condition);
 
     @RequestMapping(value = "/productMaterialNumService/saveProductMaterialNum", consumes = "application/json")
     @ResponseBody

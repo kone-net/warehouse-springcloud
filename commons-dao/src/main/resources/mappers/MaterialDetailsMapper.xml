@@ -147,42 +147,57 @@
   <resultMap id="MaterialByDayResultMap" type="com.kone.utils.bo.MaterialByDayBO">
     <result column="material_id" jdbcType="BIGINT" property="materialId" />
     <result column="materialNumSum" jdbcType="REAL" property="materialNumSum" />
+    
+    <association property="material" javaType="com.kone.utils.entity.Material">
+      <id column="material_id" jdbcType="BIGINT" property="materialId" />
+      <result column="material_name" jdbcType="VARCHAR" property="materialName" />
+      <result column="material_unit" jdbcType="VARCHAR" property="materialUnit" />
+      <result column="material_unit_price" jdbcType="REAL" property="materialUnitPrice" />
+      <result column="material_num" jdbcType="REAL" property="materialNum" />
+      <result column="gmt_create" jdbcType="TIMESTAMP" property="gmtCreate" />
+      <result column="gmt_update" jdbcType="TIMESTAMP" property="gmtUpdate" />
+      <result column="yn" jdbcType="INTEGER" property="yn" />
+    </association>
 
-    <association property="material" column="material_id" select="com.kone.commonsDao.dao.MaterialMapper.selectByPrimaryKey"></association>
+<!--    <association property="material" column="material_id" select="com.kone.commonsDao.dao.MaterialMapper.selectByPrimaryKey"></association>-->
   </resultMap>
   <sql id="Material_By_Day_Column_List">
-    material_id, SUM(material_use_num) AS materialNumSum
+    SUM(material_use_num) AS materialNumSum, m.*
   </sql>
 
   <select id="viewMaterialOutByDay" parameterType="com.kone.utils.conditions.CommonCondition" resultMap="MaterialByDayResultMap">
-    select
+    SELECT
     <include refid="Material_By_Day_Column_List" />
-    from tb_material_details
-    WHERE  yn = 0
+    FROM tb_material_details AS md
+    LEFT JOIN tb_material AS m
+    ON md.material_id = m.material_id
+    WHERE  md.yn = 0
     <if test="startTime != null and startTime !='' and endTime != null and endTime != ''">
-      AND DATE_FORMAT(gmt_create,'%Y-%m-%d') BETWEEN #{startTime} AND #{endTime}
+      AND DATE_FORMAT(md.gmt_create,'%Y-%m-%d') BETWEEN #{startTime} AND #{endTime}
     </if>
-      <if test="name != null and '' != name">
-          AND material_name LIKE '${name}%'
-      </if>
-    GROUP BY material_id
+    <if test="name != null and '' != name">
+          AND m.material_name LIKE '${name}%'
+    </if>
+    GROUP BY md.material_id
     limit #{pager.start},#{pager.size}
   </select>
 
   <select id="getMaterialOutByDaySum" parameterType="com.kone.utils.conditions.CommonCondition" resultType="java.lang.Long">
     SELECT COUNT(1) FROM
     (
-    select
-    <include refid="Material_By_Day_Column_List" />
-    from tb_material_details
-    WHERE  yn = 0
-    <if test="startTime != null and startTime !='' and endTime != null and endTime != ''">
-      AND DATE_FORMAT(gmt_create,'%Y-%m-%d') BETWEEN #{startTime} AND #{endTime}
-    </if>
-      <if test="name != null and '' != name">
-          AND material_name LIKE '${name}%'
+      SELECT
+      <include refid="Material_By_Day_Column_List" />
+      FROM tb_material_details AS md
+      LEFT JOIN tb_material AS m
+      ON md.material_id = m.material_id
+      WHERE  md.yn = 0
+      <if test="startTime != null and startTime !='' and endTime != null and endTime != ''">
+        AND DATE_FORMAT(md.gmt_create,'%Y-%m-%d') BETWEEN #{startTime} AND #{endTime}
       </if>
-    GROUP BY material_id
+      <if test="name != null and '' != name">
+        AND m.material_name LIKE '${name}%'
+      </if>
+      GROUP BY md.material_id
     )
     AS c
   </select>

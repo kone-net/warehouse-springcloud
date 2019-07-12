@@ -39,16 +39,19 @@ public class ProductService implements IProductService {
 
     @RequestMapping("/viewProduct")
     @Override
-    public ResponseMsg<List<Product>> viewProduct(@RequestBody Pager pager) {
+    public ResponseMsg<List<Product>> viewProduct(@RequestBody CommonCondition condition) {
         logger.info("view product");
+
+        Pager pager = condition.getPager();
+
         ResponseMsg<List<Product>> msg = new ResponseMsg<List<Product>>();
 
-        Long total = productMapper.countByPager(new CommonCondition());
+        Long total = productMapper.countByPager(condition);
         pager.setTotal(total);
         pager = PagerUtils.getPager(pager);
 
-        pager.setStart(pager.getNum() * pager.getSize());
-        List<Product> products = productMapper.selectByPager(pager);
+        condition.setPager(pager);
+        List<Product> products = productMapper.selectByPager(condition);
 
         msg.setData(products);
 

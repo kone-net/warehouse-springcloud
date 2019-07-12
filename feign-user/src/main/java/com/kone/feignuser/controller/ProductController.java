@@ -37,10 +37,11 @@ public class ProductController {
     @ApiImplicitParam(name="num",value="第几页",dataType="Integer", paramType = "query")
     @ApiOperation(value = "查看产品", notes = "查看产品")
     @GetMapping("/viewProduct")
-    public String viewMaterial(Pager pager, Model model) {
-        ResponseMsg<List<Product>> products = productService.viewProduct(pager);
+    public String viewMaterial(CommonCondition condition, Model model) {
+        ResponseMsg<List<Product>> products = productService.viewProduct(condition);
 
         model.addAttribute("data", products);
+        model.addAttribute("condition", condition);
         return "product/viewProduct";
     }
 
