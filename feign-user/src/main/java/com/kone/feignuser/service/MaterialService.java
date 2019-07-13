@@ -83,4 +83,14 @@ public interface MaterialService {
     @RequestMapping(value = "/materialService/viewMaterialOutByDay", consumes = "application/json")
     @ResponseBody
     ResponseMsg<List<MaterialByDayBO>> viewMaterialOutByDay(@RequestBody CommonCondition condition);
+
+
+    /**
+     * 修改入库记录的数量，会相应增加或减少库存
+     * @param materialIn 主要包括材料id和材料的入库数量
+     * @return
+     */
+    @RequestMapping(value = "/materialService/updateMaterialRecord", consumes = "application/json")
+    @ResponseBody
+    ResponseMsg updateMaterialRecord(@RequestBody MaterialIn materialIn);
 }

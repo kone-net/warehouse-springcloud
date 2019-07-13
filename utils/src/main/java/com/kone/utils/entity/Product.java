@@ -82,4 +82,18 @@ public class Product {
     public void setYn(Integer yn) {
         this.yn = yn;
     }
+
+    @Override
+    public String toString() {
+        return "Product{" +
+                "productId=" + productId +
+                ", productName='" + productName + '\'' +
+                ", productModel='" + productModel + '\'' +
+                ", productMouldModel='" + productMouldModel + '\'' +
+                ", productNum=" + productNum +
+                ", gmtCreate=" + gmtCreate +
+                ", gmtUpdate=" + gmtUpdate +
+                ", yn=" + yn +
+                '}';
+    }
 }

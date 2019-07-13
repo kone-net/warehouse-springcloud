@@ -53,4 +53,12 @@ public interface IMaterialService {
      * @return
      */
     ResponseMsg<List<MaterialByDayBO>> viewMaterialOutByDay(CommonCondition condition);
+
+
+    /**
+     * 修改入库记录的数量，会相应增加或减少库存
+     * @param materialIn 主要包括材料id和材料的入库数量
+     * @return
+     */
+    ResponseMsg updateMaterialRecord(MaterialIn materialIn);
 }

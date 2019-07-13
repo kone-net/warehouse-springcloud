@@ -1,5 +1,7 @@
 package com.kone.productservice.service.impl;
 
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import com.kone.commonsDao.dao.OrderProductMapper;
 import com.kone.productservice.service.IProductMaterialService;
 import com.kone.utils.bo.ProductByDayBO;
@@ -158,6 +160,123 @@ public class ProductMaterialService implements IProductMaterialService {
 
         msg.setPager(pager);
         msg.setData(datas);
+        return msg;
+    }
+
+    @Override
+    @RequestMapping("/updateProductInRecord")
+    public ResponseMsg updateProductInRecord(@RequestBody ProductMaterial productMaterial) {
+        logger.info("update product inbound Record");
+        ResponseMsg msg = new ResponseMsg<>();
+        if(null == productMaterial || null == productMaterial.getProductMaterialId() || 0 == productMaterial.getProductMaterialId()
+                || null == productMaterial.getProductNum()) {
+            msg.setMsg(MsgEnum.NEED_INPUT_FIELD_ERROR.getMsg());
+            msg.setCode(MsgEnum.NEED_INPUT_FIELD_ERROR.getCode());
+            return msg;
+        }
+//        1.query and get old product record
+        ProductMaterial oldProduct = productMaterialMapper.selectByPrimaryKey(productMaterial.getProductMaterialId());
+        if(null == oldProduct) {
+            msg.setMsg(MsgEnum.NEED_INPUT_FIELD_ERROR.getMsg());
+            msg.setCode(MsgEnum.NEED_INPUT_FIELD_ERROR.getCode());
+            return msg;
+        }
+        logger.info("old product record:" + oldProduct.toString());
+
+//        2.calculate the num
+        Long resultNum = 0L;
+        resultNum = productMaterial.getProductNum() - oldProduct.getProductNum();
+
+//        3.add or subtract from store.
+        Product product = productMapper.selectByPrimaryKey(oldProduct.getProductId());
+        logger.info("before the product status is updated" + product.toString());
+        Long nowNum = product.getProductNum() + resultNum;
+        product.setProductNum(nowNum);
+        product.setGmtUpdate(new Date());
+
+        productMapper.updateByPrimaryKey(product);
+
+        logger.info("after product status is updated : "+ product.toString());
+
+//        4.update the material record
+        oldProduct.setProductNum(productMaterial.getProductNum());
+        productMaterialMapper.updateByPrimaryKey(oldProduct);
+        logger.info("new product record: " + oldProduct.toString());
+
+
+        return msg;
+    }
+
+    @Override
+    @RequestMapping("/viewProductOutBoundRecord")
+    public ResponseMsg<List<OrderProduct>> viewProductOutBoundRecord(@RequestBody CommonCondition condition) {
+
+        logger.info("condition for viewProductOutBoundRecord :" + condition.toString());
+        ResponseMsg msg = new ResponseMsg<>();
+
+        Pager pager = condition.getPager();
+
+        PageHelper.offsetPage(pager.getNum().intValue() * pager.getSize(), pager.getSize());
+
+        List<OrderProduct> productRecord = orderProductMapper.selectByProductId2(condition);
+        logger.info(productRecord.size());
+
+        PageInfo<OrderProduct> pageInfo = new PageInfo<>(productRecord);
+
+        pager.setTotal(pageInfo.getTotal());
+        pager = PagerUtils.getPager(pager);
+
+
+
+        msg.setSum(orderProductMapper.getOrderProductNumSum(condition));
+        msg.setPager(pager);
+        msg.setData(productRecord);
+
+        logger.info("pager" + pageInfo.toString());
+
+        return msg;
+    }
+
+    @Override
+    @RequestMapping("/updateProductOutRecord")
+    public ResponseMsg updateProductOutRecord(@RequestBody OrderProduct orderProduct) {
+        logger.info("update product outbound Record");
+        ResponseMsg msg = new ResponseMsg<>();
+        if(null == orderProduct || null == orderProduct.getOrderProductId() || 0 == orderProduct.getOrderProductId()
+                || null == orderProduct.getProductNum()) {
+            msg.setMsg(MsgEnum.NEED_INPUT_FIELD_ERROR.getMsg());
+            msg.setCode(MsgEnum.NEED_INPUT_FIELD_ERROR.getCode());
+            return msg;
+        }
+//        1.query and get old order product record
+        OrderProduct oldOrderProduct = orderProductMapper.selectByPrimaryKey(orderProduct.getOrderProductId());
+        if(null == oldOrderProduct) {
+            msg.setMsg(MsgEnum.NEED_INPUT_FIELD_ERROR.getMsg());
+            msg.setCode(MsgEnum.NEED_INPUT_FIELD_ERROR.getCode());
+            return msg;
+        }
+        logger.info("old order product record:" + oldOrderProduct.toString());
+
+//        2.calculate the num
+        Long resultNum = 0L;
+        resultNum = oldOrderProduct.getProductNum() - orderProduct.getProductNum();
+
+//        3.add or subtract from store.
+        Product product = productMapper.selectByPrimaryKey(oldOrderProduct.getProductId());
+        logger.info("before the order product status is updated" + product.toString());
+        Long nowNum = product.getProductNum() + resultNum;
+        product.setProductNum(nowNum);
+        product.setGmtUpdate(new Date());
+
+        productMapper.updateByPrimaryKey(product);
+
+        logger.info("after order product status is updated : "+ product.toString());
+
+//        4.update the material record
+        oldOrderProduct.setProductNum(orderProduct.getProductNum());
+        orderProductMapper.updateByPrimaryKey(oldOrderProduct);
+        logger.info("new order product record: " + oldOrderProduct.toString());
+
         return msg;
     }
 

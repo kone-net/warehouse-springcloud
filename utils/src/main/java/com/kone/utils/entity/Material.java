@@ -82,4 +82,18 @@ public class Material {
     public void setYn(Integer yn) {
         this.yn = yn;
     }
+
+    @Override
+    public String toString() {
+        return "Material{" +
+                "materialId=" + materialId +
+                ", materialName='" + materialName + '\'' +
+                ", materialUnit='" + materialUnit + '\'' +
+                ", materialUnitPrice=" + materialUnitPrice +
+                ", materialNum=" + materialNum +
+                ", gmtCreate=" + gmtCreate +
+                ", gmtUpdate=" + gmtUpdate +
+                ", yn=" + yn +
+                '}';
+    }
 }

@@ -62,4 +62,16 @@ public class ProductMaterial {
     public void setYn(Integer yn) {
         this.yn = yn;
     }
+
+    @Override
+    public String toString() {
+        return "ProductMaterial{" +
+                "productMaterialId=" + productMaterialId +
+                ", productId=" + productId +
+                ", productNum=" + productNum +
+                ", gmtCreate=" + gmtCreate +
+                ", gmtUpdate=" + gmtUpdate +
+                ", yn=" + yn +
+                '}';
+    }
 }

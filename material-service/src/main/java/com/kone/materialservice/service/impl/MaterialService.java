@@ -5,6 +5,7 @@ import com.kone.commonsDao.dao.MaterialInMapper;
 import com.kone.materialservice.service.IMaterialService;
 import com.kone.utils.bo.MaterialByDayBO;
 import com.kone.utils.conditions.CommonCondition;
+import com.kone.utils.dateUtils.DateUtil;
 import com.kone.utils.entity.Material;
 import com.kone.utils.entity.MaterialIn;
 import com.kone.utils.msg.MsgEnum;
@@ -20,6 +21,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
+import java.util.Date;
 import java.util.List;
 
 @RestController
@@ -117,7 +119,8 @@ public class MaterialService implements IMaterialService {
             material.setMaterialNum(material.getMaterialNum() + materialIn.getMaterialInNum());
             materialMapper.updateByPrimaryKey(material);
 
-
+            logger.info("material in  date :" + materialIn.getDate());
+            materialIn.setGmtCreate(DateUtil.getDateByString(materialIn.getDate()));
             materialIn.setMaterialName(material.getMaterialName());
             materialIn.setInUnit(material.getMaterialUnit());
             materialInMapper.insert(materialIn);
@@ -206,6 +209,51 @@ public class MaterialService implements IMaterialService {
 
         msg.setPager(pager);
         msg.setData(materials);
+        return msg;
+    }
+
+    @Override
+    @RequestMapping("/updateMaterialRecord")
+    @Transactional
+    public ResponseMsg updateMaterialRecord(@RequestBody MaterialIn materialIn) {
+        logger.info("update Material Record");
+        ResponseMsg msg = new ResponseMsg<>();
+        if(null == materialIn || null == materialIn.getMaterialInId() || 0 == materialIn.getMaterialInId()
+        || null == materialIn.getMaterialInNum()) {
+            msg.setMsg(MsgEnum.NEED_INPUT_FIELD_ERROR.getMsg());
+            msg.setCode(MsgEnum.NEED_INPUT_FIELD_ERROR.getCode());
+            return msg;
+        }
+//        1.query and get old material record
+        MaterialIn oldMaterialIn = materialInMapper.selectByPrimaryKey(materialIn.getMaterialInId());
+        if(null == oldMaterialIn) {
+            msg.setMsg(MsgEnum.NEED_INPUT_FIELD_ERROR.getMsg());
+            msg.setCode(MsgEnum.NEED_INPUT_FIELD_ERROR.getCode());
+            return msg;
+        }
+        logger.info("old material record:" + oldMaterialIn.toString());
+
+//        2.calculate the num
+        Float resultNum = 0f;
+        resultNum = materialIn.getMaterialInNum() - oldMaterialIn.getMaterialInNum();
+
+//        3.add or subtract from store.
+        Material material = materialMapper.selectByPrimaryKey(oldMaterialIn.getMaterialId());
+        logger.info("before the material status is updated" + material.toString());
+        Float nowNum = material.getMaterialNum() + resultNum;
+        material.setMaterialNum(nowNum);
+        material.setGmtUpdate(new Date());
+
+        materialMapper.updateByPrimaryKey(material);
+
+        logger.info("after material status is updated : "+ material.toString());
+
+//        4.update the material record
+        oldMaterialIn.setMaterialInNum(materialIn.getMaterialInNum());
+        materialInMapper.updateByPrimaryKey(oldMaterialIn);
+        logger.info("new material record: " + oldMaterialIn.toString());
+
+
         return msg;
     }
 

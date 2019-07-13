@@ -51,4 +51,15 @@ public class Pager {
     public void setStart(Long start) {
         this.start = start;
     }
+
+    @Override
+    public String toString() {
+        return "Pager{" +
+                "total=" + total +
+                ", num=" + num +
+                ", size=" + size +
+                ", page=" + page +
+                ", start=" + start +
+                '}';
+    }
 }

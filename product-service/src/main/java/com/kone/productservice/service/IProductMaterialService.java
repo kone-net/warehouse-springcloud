@@ -2,6 +2,7 @@ package com.kone.productservice.service;
 
 import com.kone.utils.bo.ProductByDayBO;
 import com.kone.utils.conditions.CommonCondition;
+import com.kone.utils.entity.OrderProduct;
 import com.kone.utils.entity.ProductMaterial;
 import com.kone.utils.msg.ResponseMsg;
 
@@ -28,4 +29,25 @@ public interface IProductMaterialService {
      * @return
      */
     ResponseMsg<List<ProductByDayBO>> viewProductOutByDay(CommonCondition condition);
+
+    /**
+     * 修改入库记录的数量，会相应增加或减少库存
+     * @param productMaterial 主要包括产品记录id和产品新的的入库数量
+     * @return
+     */
+    ResponseMsg updateProductInRecord(ProductMaterial productMaterial);
+
+    /**
+     * 查看产品出库记录
+     * @param condition
+     * @return
+     */
+    ResponseMsg<List<OrderProduct>> viewProductOutBoundRecord(CommonCondition condition);
+
+    /**
+     * 修改出库记录的数量，会相应增加或减少库存
+     * @param orderProduct 主要包括产品记录id和产品新的的出库数量
+     * @return
+     */
+    ResponseMsg updateProductOutRecord(OrderProduct orderProduct);
 }

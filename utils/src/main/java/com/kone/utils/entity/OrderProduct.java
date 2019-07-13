@@ -114,4 +114,21 @@ public class OrderProduct {
     public void setMoney(Float money) {
         this.money = money;
     }
+
+    @Override
+    public String toString() {
+        return "OrderProduct{" +
+                "orderProductId=" + orderProductId +
+                ", orderId=" + orderId +
+                ", productId=" + productId +
+                ", productNum=" + productNum +
+                ", deliveryDate='" + deliveryDate + '\'' +
+                ", gmtCreate=" + gmtCreate +
+                ", gmtUpdate=" + gmtUpdate +
+                ", yn=" + yn +
+                ", product=" + product +
+                ", money=" + money +
+                ", orderProductMaterials=" + orderProductMaterials +
+                '}';
+    }
 }

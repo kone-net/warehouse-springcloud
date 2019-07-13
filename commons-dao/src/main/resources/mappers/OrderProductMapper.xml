@@ -150,6 +150,26 @@
     AND yn = 0
   </select>
 
+  <select id="selectByProductId2" parameterType="com.kone.utils.conditions.CommonCondition" resultMap="BaseResultMap1">
+    select
+    <include refid="Base_Column_List" />
+    from tb_order_product
+    where product_id = #{id,jdbcType=BIGINT}
+    AND yn = 0
+    <if test="startTime != 'null' and endTime != 'null' and startTime != null and startTime !='' and endTime != null and endTime != ''">
+      AND DATE_FORMAT(gmt_create,'%Y-%m-%d') BETWEEN #{startTime} AND #{endTime}
+    </if>
+  </select>
+
+  <select id="getOrderProductNumSum" parameterType="com.kone.utils.conditions.CommonCondition" resultType="java.lang.Float">
+    SELECT SUM(product_num) FROM tb_order_product
+    WHERE yn=0
+    AND product_id = #{id}
+    <if test="startTime != 'null' and endTime != 'null' and startTime != null and startTime !='' and endTime != null and endTime != ''">
+      AND DATE_FORMAT(gmt_create,'%Y-%m-%d') BETWEEN #{startTime} AND #{endTime}
+    </if>
+  </select>
+
   <select id="selectByProductId" parameterType="java.lang.Long" resultMap="BaseResultMap">
     select
     <include refid="Base_Column_List" />

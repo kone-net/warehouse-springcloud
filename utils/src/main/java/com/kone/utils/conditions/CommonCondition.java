@@ -52,4 +52,15 @@ public class CommonCondition {
     public void setName(String name) {
         this.name = name;
     }
+
+    @Override
+    public String toString() {
+        return "CommonCondition{" +
+                "id=" + id +
+                ", startTime='" + startTime + '\'' +
+                ", endTime='" + endTime + '\'' +
+                ", name='" + name + '\'' +
+                ", pager=" + pager +
+                '}';
+    }
 }

@@ -17,10 +17,10 @@
     <div class="panel panel-success">
 
         <div class="panel-heading">
-            <h3 class="panel-title">原材料入库记录管理</h3>
+            <h3 class="panel-title">产品出库记录管理</h3>
         </div>
         <div class="panel-body">
-            <form action="/material/viewMaterialIn?pager.num=0&pager.size=10">
+            <form action="/product/viewProductOutBoundRecord?pager.num=0&pager.size=10">
                 <input type="hidden" name="id" th:value="${condition.id}">
                 <div class="col-md-3">
                     <div class="input-group">
@@ -35,8 +35,6 @@
                         <input type="date" name="endTime" th:value="${condition.endTime}" class="form-control" placeholder="结束时间">
                     </div>
                 </div>
-
-
                 <div class="col-md-3">
                     <button class="btn btn-success" type="submit">搜索</button>
                 </div>
@@ -47,38 +45,34 @@
 
             <tr>
                 <th>编号</th>
-                <th>材料名称</th>
                 <th>入库数量</th>
-                <th>材料单位</th>
                 <th>入库日期</th>
-                <th>修改数量</th>
+                <th>修改出库数量</th>
             </tr>
             <tr th:each="data:${data.data}">
-                <td th:text="${data.materialInId}"></td>
-                <td th:text="${data.materialName}"></td>
-                <td th:text="${data.materialInNum}"></td>
-                <td th:text="${data.inUnit}"></td>
-                <td th:text="${#dates.format(data.gmtCreate, 'yyyy-MM-dd')}"></td>
+                <td th:text="${data.orderProductId}"></td>
+                <td th:text="${data.productNum}"></td>
+<!--                <td th:text="${#dates.format(data.gmtCreate, 'yyyy-MM-dd')}"></td>-->
+                <td th:text="${data.gmtCreate}"></td>
                 <td>
-                    <button class="btn btn-sm btn-warning" data-toggle="modal" data-target="#myModal" th:onclick= "'javascript:updateNum('+${data.materialId}+','+${data.materialInId}+','+${data.materialInNum}+')'">
-                        修改入库数量
+                    <button class="btn btn-sm btn-warning" data-toggle="modal" data-target="#myModal" th:onclick= "'javascript:updateNum('+${data.productId}+','+${data.orderProductId}+','+${data.productNum}+')'">
+                        修改出库数量
                     </button>
                 </td>
             </tr>
 
             <tr>
-                <td colspan="3">总计数量：</td>
-                <td colspan="3" th:text="${data.sum}"></td>
+                <td colspan="2">总计数量：</td>
+                <td colspan="2" th:text="${data.sum}"></td>
             </tr>
         </table>
     </div>
 
     <ul class="pager">
-        <li class="previous"><a href="#" th:onclick= "'javascript:pager('+${data.pager.num}+',0,'+${materialId}+')'">&larr; 上一页</a></li>
+        <li class="previous"><a href="#" th:onclick= "'javascript:pager('+${data.pager.num}+',0)'">&larr; 上一页</a></li>
         总共<span th:text="${data.pager.total}"></span>条，共<span th:text="${data.pager.page}"></span>页,当前第<span th:text="${data.pager.num + 1}"></span>页
-        <li class="next"><a href="#" th:onclick= "'javascript:pager('+${data.pager.num}+',1,'+${materialId}+')'">下一页 &rarr;</a></li>
+        <li class="next"><a href="#" th:onclick= "'javascript:pager('+${data.pager.num}+',1)'">下一页 &rarr;</a></li>
     </ul>
-
 
 
     <!-- 模态框（Modal） -->
@@ -91,9 +85,9 @@
                 </div>
                 <div class="modal-body">
                     <form id="form">
-                        <input type="hidden" class="form-control" name="materialId" id="materialId" /><br>
-                        <input type="hidden" class="form-control" name="materialInId" id="materialInId" /><br>
-                        <input type="number" class="form-control" name="materialInNum" id="materialInNum" placeholder="材料数量"/><br>
+                        <input type="hidden" class="form-control" name="productId" id="productId" />
+                        <input type="hidden" class="form-control" name="orderProductId" id="orderProductId" />
+                        <input type="number" class="form-control" name="productNum" id="productNum" placeholder="产品数量"/><br>
 
                     </form>
                 </div>
@@ -106,6 +100,7 @@
     </div>
 
 
+
     <!-- JS Scripts-->
     <!-- jQuery Js -->
     <script src="/assets/js/jquery-1.10.2.js"></script>
@@ -115,7 +110,7 @@
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
     <script th:inline="javascript">
-        function pager(num, type, materialId) {
+        function pager(num, type) {
             if(0 == type) {
                 num = num - 1;
             } else {
@@ -123,20 +118,14 @@
             }
             var startTime = [[${condition.startTime}]];
             var endTime = [[${condition.endTime}]];
-            if (null == startTime || "null" == startTime) {
-                startTime = '';
-            }
-            if (null == endTime || "null" == endTime) {
-                endTime = '';
-            }
-
-            window.location.href='/material/viewMaterialIn?pager.size=10&pager.num=' + num +'&id=' + materialId+'&startTime='+startTime+'&endTime='+endTime;
+            var productId = [[${condition.id}]];
+            window.location.href='/product/viewProductOutBoundRecord?pager.size=10&pager.num=' + num +'&id=' + productId+'&startTime='+startTime+'&endTime='+endTime;
         }
 
-        function updateNum(materialId,materialInId, num) {
-            $("#materialId").val(materialId);
-            $("#materialInNum").val(num);
-            $("#materialInId").val(materialInId);
+        function updateNum(productId, orderProductId, productNum) {
+            $("#productId").val(productId);
+            $("#productNum").val(productNum);
+            $("#orderProductId").val(orderProductId);
 
         }
 
@@ -144,7 +133,7 @@
             var form = new FormData(document.getElementById("form"));
             $.ajax({
                 type:"post",
-                url:"/material/updateMaterialRecord",
+                url:"/product/updateProductOutRecord",
                 data:form,
                 dataType:"json",
                 processData:false,

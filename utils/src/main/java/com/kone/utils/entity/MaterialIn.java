@@ -19,6 +19,8 @@ public class MaterialIn {
 
     private Integer yn;
 
+    private String date;  //temp
+
     public Long getMaterialInId() {
         return materialInId;
     }
@@ -81,5 +83,27 @@ public class MaterialIn {
 
     public void setYn(Integer yn) {
         this.yn = yn;
+    }
+
+    public String getDate() {
+        return date;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
+    }
+
+    @Override
+    public String toString() {
+        return "MaterialIn{" +
+                "materialInId=" + materialInId +
+                ", materialId=" + materialId +
+                ", materialName='" + materialName + '\'' +
+                ", materialInNum=" + materialInNum +
+                ", inUnit='" + inUnit + '\'' +
+                ", gmtCreate=" + gmtCreate +
+                ", gmtUpdate=" + gmtUpdate +
+                ", yn=" + yn +
+                '}';
     }
 }

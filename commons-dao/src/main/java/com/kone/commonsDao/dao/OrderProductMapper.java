@@ -21,6 +21,8 @@ public interface OrderProductMapper {
 
     List<OrderProduct> selectByOrderId(Long orderId);
 
+    List<OrderProduct> selectByProductId2(CommonCondition condition);
+
     Long countByPager(CommonCondition condition);
 
     List<OrderProduct> selectByProductId(Long productId, Long orderId);
@@ -40,4 +42,6 @@ public interface OrderProductMapper {
      * @return
      */
     Long getProductOutByDaySum(CommonCondition condition);
+
+    Float getOrderProductNumSum(CommonCondition condition);
 }

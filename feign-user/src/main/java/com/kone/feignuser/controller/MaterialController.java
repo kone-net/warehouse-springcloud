@@ -107,6 +107,7 @@ public class MaterialController {
     @PostMapping("/saveMaterialIn")
     @ResponseBody
     public ResponseMsg saveMaterialIn(MaterialIn materialIn) {
+        logger.info("material in date:" + materialIn.getDate());
         ResponseMsg msg = materialService.saveMaterialIn(materialIn);
         return msg;
     }
@@ -149,5 +150,18 @@ public class MaterialController {
         model.addAttribute("data", materialDetails);
         model.addAttribute("condition", condition);
         return "material/viewMaterialOutByDay";
+    }
+
+
+    /**
+     * 修改入库记录的数量，会相应增加或减少库存
+     * @param materialIn 主要包括材料id和材料的入库数量
+     * @return
+     */
+    @PostMapping("/updateMaterialRecord")
+    @ResponseBody
+    public ResponseMsg updateMaterialRecord(MaterialIn materialIn) {
+        ResponseMsg msg = materialService.updateMaterialRecord(materialIn);
+        return msg;
     }
 }

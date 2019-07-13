@@ -48,6 +48,36 @@ public interface ProductService {
     @ResponseBody
     ResponseMsg<List<ProductMaterial>> viewProductIn(@RequestBody CommonCondition condition);
 
+
+    /**
+     * 查看产品出库记录
+     * @param condition
+     * @return
+     */
+    @RequestMapping(value = "/productMaterialService/viewProductOutBoundRecord", consumes = "application/json")
+    @ResponseBody
+    ResponseMsg viewProductOutBoundRecord(@RequestBody CommonCondition condition);
+
+    /**
+     * 修改入库记录的数量，会相应增加或减少库存
+     * @param productMaterial 主要包括产品记录id和产品新的的入库数量
+     * @return
+     */
+    @RequestMapping(value = "/productMaterialService/updateProductInRecord", consumes = "application/json")
+    @ResponseBody
+    ResponseMsg updateProductInRecord(@RequestBody ProductMaterial productMaterial);
+
+
+    /**
+     * 修改出库记录的数量，会相应增加或减少库存
+     * @param orderProduct 主要包括产品记录id和产品新的的出库数量
+     * @return
+     */
+    @RequestMapping(value = "/productMaterialService/updateProductOutRecord", consumes = "application/json")
+    @ResponseBody
+    ResponseMsg updateProductOutRecord(@RequestBody OrderProduct orderProduct);
+
+
     @RequestMapping(value = "/productService/deleteProduct", consumes = "application/json")
     @ResponseBody
     ResponseMsg deleteProduct(@RequestParam("productId") Long productId);

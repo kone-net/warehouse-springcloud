@@ -246,6 +246,48 @@ public class ProductController {
         return "product/viewProductIn";
     }
 
+
+    /**
+     * 查看产品出库记录
+     * @param condition
+     * @param model
+     * @return
+     */
+    @GetMapping("/viewProductOutBoundRecord")
+    public String viewProductOutBoundRecord(CommonCondition condition, Model model) {
+        logger.info("product out bound id is " + condition.getId());
+        ResponseMsg msg = productService.viewProductOutBoundRecord(condition);
+
+        model.addAttribute("data", msg);
+        model.addAttribute("condition", condition);
+        return "product/viewProductOutBoundRecord";
+    }
+
+    /**
+     * 修改入库记录的数量，会相应增加或减少库存
+     * @param productMaterial 主要包括产品记录id和产品新的的入库数量
+     * @return
+     */
+    @PostMapping("/updateProductInRecord")
+    @ResponseBody
+    public ResponseMsg updateProductRecord(ProductMaterial productMaterial) {
+        ResponseMsg msg = productService.updateProductInRecord(productMaterial);
+        return msg;
+    }
+
+    /**
+     * 修改出库记录的数量，会相应增加或减少库存
+     * @param orderProduct 主要包括产品记录id和产品新的的出库数量
+     * @return
+     */
+    @PostMapping("/updateProductOutRecord")
+    @ResponseBody
+    public ResponseMsg updateProductOutRecord(OrderProduct orderProduct) {
+        ResponseMsg msg = productService.updateProductOutRecord(orderProduct);
+        return msg;
+    }
+
+
     /**
      * 删除产品，改变yn的值
      * @param productId
